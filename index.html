@@ -332,13 +332,16 @@ function addCardToColumn(id,col){const card=CARDS[id];if(!card)return;const el=r
 function approveCard(id){const el=document.getElementById('card-'+id);if(!el)return;el.classList.add('approved','approve-anim');setTimeout(()=>el.classList.remove('approve-anim'),400);}
 function rejectCard(id){const el=document.getElementById('card-'+id);if(!el)return;el.classList.add('rejected');}
 function moveCard(id,col){
-  const el=document.getElementById('card-'+id);if(!el)return;el.classList.add('moving');
-  setTimeout(()=>{el.remove();document.getElementById('col-'+col).appendChild(el);updateCounts();
-  // Remove approval buttons when leaving To Do
-  const appr=el.querySelector('.card-approval');if(appr)appr.remove();
+  var el=document.getElementById('card-'+id);if(!el)return;
+  el.classList.add('moving');
+  el.remove();
+  document.getElementById('col-'+col).appendChild(el);
+  updateCounts();
+  var appr=el.querySelector('.card-approval');if(appr)appr.remove();
   el.classList.remove('approved','rejected');
-  if(col==='done'){const due=el.querySelector('.card-due');if(due)due.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';}
-  drawArrows();setTimeout(()=>el.classList.remove('moving'),800);},150);
+  if(col==='done'){var due=el.querySelector('.card-due');if(due)due.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';}
+  drawArrows();
+  setTimeout(function(){el.classList.remove('moving');},800);
 }
 function updateCounts(){['todo','progress','review','done'].forEach(c=>{document.getElementById('count-'+c).textContent=document.getElementById('col-'+c).querySelectorAll('.card').length;});const t=document.querySelectorAll('.card').length;const d=document.getElementById('col-done').querySelectorAll('.card').length;document.getElementById('stat-total').textContent=t+' Tasks';document.getElementById('stat-done').textContent=d+' Done';}
 
@@ -354,13 +357,16 @@ function drawArrows(){
     const sameCol=Math.abs(fr.left-tr.left)<50;
     let d;
     if(sameCol){
-      const cx=fr.left+fr.width/2-wr.left;
-      const fy=fr.bottom-wr.top+2,ty=tr.top-wr.top-2;
-      const my=(fy+ty)/2;
-      d='M '+cx+' '+fy+' C '+(cx+35)+' '+my+', '+(cx+35)+' '+my+', '+cx+' '+ty;
+      // Route along the right edge: exit right side of source, curve down, enter right side of target
+      const rx=fr.right-wr.left+8; // just outside right edge
+      const fy=fr.top+fr.height*0.7-wr.top;
+      const ty=tr.top+tr.height*0.3-wr.top;
+      const bulge=rx+25;
+      d='M '+rx+' '+fy+' C '+bulge+' '+fy+', '+bulge+' '+ty+', '+rx+' '+ty;
     } else {
-      const x1=fr.right-wr.left,y1=fr.top+fr.height/2-wr.top;
-      const x2=tr.left-wr.left,y2=tr.top+tr.height/2-wr.top;
+      // Cross-column: exit right of source, curve to left of target
+      const x1=fr.right-wr.left+4,y1=fr.top+fr.height/2-wr.top;
+      const x2=tr.left-wr.left-4,y2=tr.top+tr.height/2-wr.top;
       const cp=Math.max(Math.abs(x2-x1)*0.4,40);
       d='M '+x1+' '+y1+' C '+(x1+cp)+' '+y1+', '+(x2-cp)+' '+y2+', '+x2+' '+y2;
     }
@@ -394,7 +400,16 @@ function startDemo(){
   btn.classList.add('paused');document.getElementById('sidebar-status').textContent='Working...';
   if(animationStart===null){animationStart=performance.now();pausedElapsed=0;if(!sidebarOpen)toggleSidebar();}
   else if(lastPauseTime!==null){pausedElapsed+=performance.now()-lastPauseTime;}
-  lastPauseTime=null;if(!animationFrame)animationFrame=setInterval(tick,50);
+  lastPauseTime=null;if(!animationFrame)animationFrame=setInterval(function(){
+    if(!isPlaying)return;
+    var _n=performance.now(),_e=(_n-animationStart-pausedElapsed)*speedMultiplier;
+    var _m=TIMELINE.length>0?TIMELINE[TIMELINE.length-1].t:1;
+    while(currentEventIndex<TIMELINE.length){var _t=TIMELINE[currentEventIndex].t/_m*WEEK_DURATION;if(_e<_t)break;processEvent(TIMELINE[currentEventIndex]);currentEventIndex++;}
+    var _d=Math.min(_e/WEEK_DURATION,1);
+    document.getElementById('timeDisplay').textContent=getTimeForProgress(_d);
+    document.getElementById('timeProgressBar').style.width=(_d*100)+'%';
+    if(currentEventIndex>=TIMELINE.length&&_d>=1){document.getElementById('sidebar-status').textContent='Week Complete \u2713';pauseDemo();}
+  },50);
 }
 function pauseDemo(){
   isPlaying=false;lastPauseTime=performance.now();const btn=document.getElementById('playBtn');
@@ -403,19 +418,19 @@ function pauseDemo(){
   if(animationFrame){clearInterval(animationFrame);animationFrame=null;}
 }
 function tick(){
-  if(!isPlaying)return;const now=performance.now();
-  const elapsed=(now-animationStart-pausedElapsed)*speedMultiplier;
-  const maxT=TIMELINE.length>0?TIMELINE[TIMELINE.length-1].t:1;
-  // Process all events whose time has come
+  if(!isPlaying)return;
+  var _n=performance.now();
+  var _e=(_n-animationStart-pausedElapsed)*speedMultiplier;
+  var _m=TIMELINE.length>0?TIMELINE[TIMELINE.length-1].t:1;
   while(currentEventIndex<TIMELINE.length){
-    const targetElapsed=TIMELINE[currentEventIndex].t/maxT*WEEK_DURATION;
-    if(elapsed<targetElapsed)break;
+    var _te=TIMELINE[currentEventIndex].t/_m*WEEK_DURATION;
+    if(_e<_te)break;
     processEvent(TIMELINE[currentEventIndex]);currentEventIndex++;
   }
-  const displayProg=Math.min(elapsed/WEEK_DURATION,1);
-  document.getElementById('timeDisplay').textContent=getTimeForProgress(displayProg);
-  document.getElementById('timeProgressBar').style.width=(displayProg*100)+'%';
-  if(currentEventIndex>=TIMELINE.length&&displayProg>=1){document.getElementById('sidebar-status').textContent='Week Complete \u2713';pauseDemo();}
+  var _dp=Math.min(_e/WEEK_DURATION,1);
+  document.getElementById('timeDisplay').textContent=getTimeForProgress(_dp);
+  document.getElementById('timeProgressBar').style.width=(_dp*100)+'%';
+  if(currentEventIndex>=TIMELINE.length&&_dp>=1){document.getElementById('sidebar-status').textContent='Week Complete \u2713';pauseDemo();}
 }
 function processEvent(ev){
   switch(ev.action){

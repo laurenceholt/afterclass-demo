@@ -199,6 +199,16 @@ function renderCards() {
       </div>
       <div class="field"><label>Math Preview</label><input value="${esc(card.math||'')}" onchange="updateCard('${id}','math',this.value)"></div>
       <div class="field"><label>Dependency (card ID)</label><input value="${esc(card.dependency||'')}" onchange="updateCard('${id}','dependency',this.value||undefined)"></div>
+      <div class="field"><label>Badges</label><div class="badges-editor">
+        ${card.badges.map((b,i) => `<div class="badge-edit">
+          <input value="${esc(b.text)}" style="width:70px;padding:3px 6px;font-size:11px;border:1px solid #ddd;border-radius:4px" onchange="updateBadge('${id}',${i},'text',this.value)">
+          <select style="font-size:10px;padding:2px;border:1px solid #ddd;border-radius:4px" onchange="updateBadge('${id}',${i},'cls',this.value)">
+            ${['high','medium','low','subject','tool','oko','brisk'].map(c=>`<option ${b.cls===c?'selected':''}>${c}</option>`).join('')}
+          </select>
+          <button onclick="removeBadge('${id}',${i})" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:14px">×</button>
+        </div>`).join('')}
+        <button class="add-student-btn" onclick="addBadge('${id}')">+ Badge</button>
+      </div></div>
       ${card.students ? `<div class="field"><label>Students</label><div class="students-editor" id="students-${id}">
         ${card.students.map((s,i) => `<div class="student-row">
           <input value="${esc(s.name)}" placeholder="Name" onchange="updateStudent('${id}',${i},'name',this.value)">
@@ -215,6 +225,9 @@ function renderCards() {
 
 function esc(s) { return (s||'').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
 function updateCard(id, key, val) { data.cards[id][key] = val; }
+function updateBadge(id, i, key, val) { data.cards[id].badges[i][key] = val; }
+function removeBadge(id, i) { data.cards[id].badges.splice(i, 1); renderCards(); }
+function addBadge(id) { data.cards[id].badges.push({text: 'New', cls: 'subject'}); renderCards(); }
 function updateStudent(id, i, key, val) { data.cards[id].students[i][key] = val; }
 function removeStudent(id, i) { data.cards[id].students.splice(i, 1); renderCards(); }
 function addStudent(id) { data.cards[id].students.push({name:'', initials:''}); renderCards(); }
