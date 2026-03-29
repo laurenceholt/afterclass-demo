@@ -2,44 +2,20 @@
   "cards": {
     "assess": {
       "id": "assess",
-      "title": "Run Unit 3 End-of-Unit Assessment",
-      "desc": "Administer IM Unit 3 assessment covering linear relationships, slope, y = mx + b, and calculating slope from two points",
-      "icon": "📊",
-      "iconClass": "assessment",
-      "badges": [
-        {
-          "text": "High",
-          "cls": "high"
-        },
-        {
-          "text": "Assessment",
-          "cls": "subject"
-        }
-      ],
+      "title": "Analyze Unit 3 Assessment Results",
+      "desc": "Unit 3 end-of-unit assessment was given Friday. Analyze results to identify gaps in slope, y = mx + b, and calculating slope from two points before diving into Unit 4.",
+      "icon": "📊", "iconClass": "assessment",
+      "badges": [{"text": "High", "cls": "high"}, {"text": "Assessment", "cls": "subject"}],
       "math": "Find slope between (2, −1) and (6, 1)",
       "due": "Mon Nov 3"
     },
     "revise": {
       "id": "revise",
-      "title": "Revise Unit 4 Lessons 1–4 (Coteach)",
-      "desc": "Use Coteach to adjust Unit 4 lessons on equivalent equations and balanced moves — add scaffolding for students who struggled with slope and y-intercept in Unit 3",
-      "icon": "✏️",
-      "iconClass": "lesson",
-      "badges": [
-        {
-          "text": "High",
-          "cls": "high"
-        },
-        {
-          "text": "Lesson Prep",
-          "cls": "subject"
-        },
-        {
-          "text": "coteach.ai",
-          "cls": "tool"
-        }
-      ],
-      "math": "Scaffold: 2x + 3 = 7 → 2x = 4 → x = 2",
+      "title": "Adjust Remaining Lessons (Coteach)",
+      "desc": "Use coteach.ai to adjust Unit 4 Lessons 3–4 based on how Lessons 1–2 went and what the assessment data showed. Add scaffolding where students struggled.",
+      "icon": "✏️", "iconClass": "lesson",
+      "badges": [{"text": "High", "cls": "high"}, {"text": "Lesson Prep", "cls": "subject"}, {"text": "coteach.ai", "cls": "tool"}],
+      "math": "Add bridge problems: hanger → equation",
       "due": "Wed Nov 5",
       "dependency": "assess"
     },
@@ -47,36 +23,9 @@
       "id": "oko-slope",
       "title": "OKO Small Group: Calculating Slope",
       "desc": "Jayden, Aisha, and Carlos all struggled with calculating slope from two points on the Unit 3 assessment. Set them up with OKO to practice finding slope and interpreting rate of change in real-world contexts from Lessons 7 and 10.",
-      "icon": "👥",
-      "iconClass": "group",
-      "badges": [
-        {
-          "text": "Medium",
-          "cls": "medium"
-        },
-        {
-          "text": "Small Group",
-          "cls": "subject"
-        },
-        {
-          "text": "OKO",
-          "cls": "oko"
-        }
-      ],
-      "students": [
-        {
-          "name": "Jayden",
-          "initials": "JW"
-        },
-        {
-          "name": "Aisha",
-          "initials": "AR"
-        },
-        {
-          "name": "Carlos",
-          "initials": "CM"
-        }
-      ],
+      "icon": "👥", "iconClass": "group",
+      "badges": [{"text": "Medium", "cls": "medium"}, {"text": "Small Group", "cls": "subject"}, {"text": "OKO", "cls": "oko"}],
+      "students": [{"name": "Jayden", "initials": "JW"}, {"name": "Aisha", "initials": "AR"}, {"name": "Carlos", "initials": "CM"}],
       "math": "slope = (5 − 2)/(8 − 0) = 3/8",
       "due": "Tue Nov 4"
     },
@@ -84,94 +33,29 @@
       "id": "marcus",
       "title": "Extra Practice: Marcus",
       "desc": "Marcus confuses slope and y-intercept, so he needs support from Unit 3 Lessons 5–8. Assign him 1-on-1 practice on writing equations in y = mx + b form from a graph.",
-      "icon": "👤",
-      "iconClass": "student",
-      "badges": [
-        {
-          "text": "High",
-          "cls": "high"
-        },
-        {
-          "text": "1-on-1",
-          "cls": "subject"
-        },
-        {
-          "text": "Brisk",
-          "cls": "brisk"
-        }
-      ],
-      "students": [
-        {
-          "name": "Marcus T.",
-          "initials": "MT"
-        }
-      ],
+      "icon": "👤", "iconClass": "student",
+      "badges": [{"text": "High", "cls": "high"}, {"text": "1-on-1", "cls": "subject"}, {"text": "Brisk", "cls": "brisk"}],
+      "students": [{"name": "Marcus T.", "initials": "MT"}],
       "math": "line through (0, 3) with slope 2 → y = 2x + 3",
       "due": "Tue Nov 4"
     },
     "aaliyah": {
       "id": "aaliyah",
       "title": "Extra Practice: Aaliyah",
-      "desc": "Aaliyah has a gap from Grade 7 Unit 2 on proportional relationships (y = kx) that’s blocking her understanding of linear vs. proportional. Assign her 1-on-1 practice identifying the constant of proportionality.",
-      "icon": "👤",
-      "iconClass": "student",
-      "badges": [
-        {
-          "text": "High",
-          "cls": "high"
-        },
-        {
-          "text": "1-on-1",
-          "cls": "subject"
-        },
-        {
-          "text": "Brisk",
-          "cls": "brisk"
-        }
-      ],
-      "students": [
-        {
-          "name": "Aaliyah R.",
-          "initials": "AR"
-        }
-      ],
+      "desc": "Aaliyah has a gap from Grade 7 Unit 2 on proportional relationships (y = kx) that's blocking her understanding of linear vs. proportional. Assign her 1-on-1 practice identifying the constant of proportionality.",
+      "icon": "👤", "iconClass": "student",
+      "badges": [{"text": "High", "cls": "high"}, {"text": "1-on-1", "cls": "subject"}, {"text": "Brisk", "cls": "brisk"}],
+      "students": [{"name": "Aaliyah R.", "initials": "AR"}],
       "math": "y = kx: if 3 pizzas cost $24, find k",
       "due": "Wed Nov 5"
     },
     "oko-equations": {
       "id": "oko-equations",
       "title": "OKO Group: Writing Equations from Tables",
-      "desc": "Maya, DeShawn, and Imani can read tables but aren’t connecting rate of change to slope yet. Set them up with OKO to practice writing y = mx + b from tables, building on Unit 3 Lessons 5–7.",
-      "icon": "👥",
-      "iconClass": "group",
-      "badges": [
-        {
-          "text": "Medium",
-          "cls": "medium"
-        },
-        {
-          "text": "Small Group",
-          "cls": "subject"
-        },
-        {
-          "text": "OKO",
-          "cls": "oko"
-        }
-      ],
-      "students": [
-        {
-          "name": "Maya",
-          "initials": "MJ"
-        },
-        {
-          "name": "DeShawn",
-          "initials": "DL"
-        },
-        {
-          "name": "Imani",
-          "initials": "IK"
-        }
-      ],
+      "desc": "Maya, DeShawn, and Imani can read tables but aren't connecting rate of change to slope yet. Set them up with OKO to practice writing y = mx + b from tables, building on Unit 3 Lessons 5–7.",
+      "icon": "👥", "iconClass": "group",
+      "badges": [{"text": "Medium", "cls": "medium"}, {"text": "Small Group", "cls": "subject"}, {"text": "OKO", "cls": "oko"}],
+      "students": [{"name": "Maya", "initials": "MJ"}, {"name": "DeShawn", "initials": "DL"}, {"name": "Imani", "initials": "IK"}],
       "math": "x: 0,1,2 → y: 5,8,11 → y = 3x + 5",
       "due": "Mon Nov 3"
     },
@@ -179,28 +63,9 @@
       "id": "challenge",
       "title": "Challenge: Equation Error Analysis",
       "desc": "Darius and Zara aced the Unit 3 assessment and are ready to move ahead. Give them Unit 4 Lesson 4 cool-down style problems where they critique solution paths and find errors in multi-step equations.",
-      "icon": "🌟",
-      "iconClass": "challenge",
-      "badges": [
-        {
-          "text": "Low",
-          "cls": "low"
-        },
-        {
-          "text": "Extension",
-          "cls": "subject"
-        }
-      ],
-      "students": [
-        {
-          "name": "Darius",
-          "initials": "DW"
-        },
-        {
-          "name": "Zara",
-          "initials": "ZH"
-        }
-      ],
+      "icon": "🌟", "iconClass": "challenge",
+      "badges": [{"text": "Low", "cls": "low"}, {"text": "Extension", "cls": "subject"}],
+      "students": [{"name": "Darius", "initials": "DW"}, {"name": "Zara", "initials": "ZH"}],
       "math": "Find the error: 8(x−3)+7 = 2x(4−17)",
       "due": "Fri Nov 7"
     },
@@ -208,18 +73,8 @@
       "id": "analyze",
       "title": "Analyze Practice for Common Bugs",
       "desc": "Review Unit 3 cool-downs and practice problems to find patterns in student errors around slope, y-intercept, and writing equations of lines",
-      "icon": "🔍",
-      "iconClass": "analysis",
-      "badges": [
-        {
-          "text": "Medium",
-          "cls": "medium"
-        },
-        {
-          "text": "Analysis",
-          "cls": "subject"
-        }
-      ],
+      "icon": "🔍", "iconClass": "analysis",
+      "badges": [{"text": "Medium", "cls": "medium"}, {"text": "Analysis", "cls": "subject"}],
       "math": "Bug: reads y-int as slope in y = 3 + 2x",
       "due": "Thu Nov 6"
     },
@@ -227,18 +82,8 @@
       "id": "video",
       "title": "Create Video: Slope from Two Points",
       "desc": "Record explainer video students watch at home on calculating slope from two points, using rise/run and the formula — the most common Unit 3 gap",
-      "icon": "🎬",
-      "iconClass": "video",
-      "badges": [
-        {
-          "text": "Medium",
-          "cls": "medium"
-        },
-        {
-          "text": "Video",
-          "cls": "subject"
-        }
-      ],
+      "icon": "🎬", "iconClass": "video",
+      "badges": [{"text": "Medium", "cls": "medium"}, {"text": "Video", "cls": "subject"}],
       "math": "(y₂−y₁)/(x₂−x₁) = (1−(−2))/(6−2) = 3/4",
       "due": "Fri Nov 7",
       "dependency": "analyze"
@@ -247,597 +92,138 @@
       "id": "game",
       "title": "Build Hanger Diagram Game",
       "desc": "Create an interactive game where students balance hanger diagrams and match them to equations — supports Unit 4 Lessons 2–3 conceptual foundation",
-      "icon": "🎮",
-      "iconClass": "game",
-      "badges": [
-        {
-          "text": "Medium",
-          "cls": "medium"
-        },
-        {
-          "text": "Activity",
-          "cls": "subject"
-        }
-      ],
+      "icon": "🎮", "iconClass": "game",
+      "badges": [{"text": "Medium", "cls": "medium"}, {"text": "Activity", "cls": "subject"}],
       "math": "Balance: ●●△ = ■■■△ → 2c = 3s",
       "due": "Thu Nov 6"
     },
     "assign-game": {
       "id": "assign-game",
       "title": "Assign Game to Class",
-      "desc": "Push the hanger diagram game to all students as practice before Unit 4 Lesson 3 Balanced Moves",
-      "icon": "📤",
-      "iconClass": "assign",
-      "badges": [
-        {
-          "text": "Low",
-          "cls": "low"
-        },
-        {
-          "text": "Assignment",
-          "cls": "subject"
-        }
-      ],
+      "desc": "Push the hanger diagram game to all students as extra practice after Unit 4 Lesson 3 Balanced Moves",
+      "icon": "📤", "iconClass": "assign",
+      "badges": [{"text": "Low", "cls": "low"}, {"text": "Assignment", "cls": "subject"}],
       "due": "Fri Nov 7",
       "dependency": "game"
     }
   },
   "timeline": [
-    {
-      "t": 0,
-      "action": "sidebar-open"
-    },
-    {
-      "t": 0.01,
-      "action": "msg",
-      "type": "system",
-      "text": "── Monday, Nov 3 ──"
-    },
-    {
-      "t": 0.02,
-      "action": "msg",
-      "type": "teacher",
-      "text": "Okay, starting Unit 4 today! We just finished Unit 3 and I’m worried about some of my kids."
-    },
-    {
-      "t": 0.04,
-      "action": "msg",
-      "type": "agent",
-      "text": "I’ve set up your board for the transition into Unit 4: Linear Equations. Here are the tasks I’d recommend based on what I know about your class. Please review and approve each one."
-    },
-    {
-      "t": 0.06,
-      "action": "add-card",
-      "card": "assess",
-      "col": "todo"
-    },
-    {
-      "t": 0.07,
-      "action": "add-card",
-      "card": "oko-equations",
-      "col": "todo"
-    },
-    {
-      "t": 0.08,
-      "action": "add-card",
-      "card": "oko-slope",
-      "col": "todo"
-    },
-    {
-      "t": 0.09,
-      "action": "add-card",
-      "card": "marcus",
-      "col": "todo"
-    },
-    {
-      "t": 0.1,
-      "action": "add-card",
-      "card": "aaliyah",
-      "col": "todo"
-    },
-    {
-      "t": 0.11,
-      "action": "add-card",
-      "card": "revise",
-      "col": "todo"
-    },
-    {
-      "t": 0.12,
-      "action": "add-card",
-      "card": "challenge",
-      "col": "todo"
-    },
-    {
-      "t": 0.13,
-      "action": "add-card",
-      "card": "analyze",
-      "col": "todo"
-    },
-    {
-      "t": 0.14,
-      "action": "add-card",
-      "card": "video",
-      "col": "todo"
-    },
-    {
-      "t": 0.15,
-      "action": "add-card",
-      "card": "game",
-      "col": "todo"
-    },
-    {
-      "t": 0.16,
-      "action": "add-card",
-      "card": "assign-game",
-      "col": "todo"
-    },
-    {
-      "t": 0.17,
-      "action": "msg",
-      "type": "action",
-      "text": "✓ 11 tasks created · 4 with dependencies"
-    },
-    {
-      "t": 0.19,
-      "action": "msg",
-      "type": "teacher",
-      "text": "This looks good. Let me go through them."
-    },
-    {
-      "t": 0.2,
-      "action": "approve-card",
-      "card": "assess"
-    },
-    {
-      "t": 0.21,
-      "action": "approve-card",
-      "card": "oko-equations"
-    },
-    {
-      "t": 0.22,
-      "action": "approve-card",
-      "card": "oko-slope"
-    },
-    {
-      "t": 0.23,
-      "action": "approve-card",
-      "card": "marcus"
-    },
-    {
-      "t": 0.24,
-      "action": "approve-card",
-      "card": "aaliyah"
-    },
-    {
-      "t": 0.25,
-      "action": "approve-card",
-      "card": "revise"
-    },
-    {
-      "t": 0.26,
-      "action": "reject-card",
-      "card": "challenge"
-    },
-    {
-      "t": 0.27,
-      "action": "msg",
-      "type": "teacher",
-      "text": "Hold off on the extension for Darius and Zara. I want to see how they do on the assessment first before sending them ahead."
-    },
-    {
-      "t": 0.28,
-      "action": "msg",
-      "type": "agent",
-      "text": "Got it — I’ll keep the challenge card on hold until we have assessment results."
-    },
-    {
-      "t": 0.29,
-      "action": "approve-card",
-      "card": "analyze"
-    },
-    {
-      "t": 0.3,
-      "action": "approve-card",
-      "card": "video"
-    },
-    {
-      "t": 0.31,
-      "action": "approve-card",
-      "card": "game"
-    },
-    {
-      "t": 0.32,
-      "action": "approve-card",
-      "card": "assign-game"
-    },
-    {
-      "t": 0.33,
-      "action": "msg",
-      "type": "action",
-      "text": "✓ 10 approved · 1 on hold"
-    },
-    {
-      "t": 0.35,
-      "action": "msg",
-      "type": "agent",
-      "text": "Starting the Unit 3 assessment and the OKO equations group right away. Key areas to watch on the assessment: slope from two points (Lesson 10), writing y = mx + b (Lesson 8), and interpreting slope in context (Lessons 6–7)."
-    },
-    {
-      "t": 0.36,
-      "action": "move-card",
-      "card": "assess",
-      "col": "progress"
-    },
-    {
-      "t": 0.37,
-      "action": "move-card",
-      "card": "oko-equations",
-      "col": "progress"
-    },
-    {
-      "t": 0.38,
-      "action": "msg",
-      "type": "action",
-      "text": "→ Assessment & OKO Equations → In Progress"
-    },
-    {
-      "t": 0.41,
-      "action": "msg",
-      "type": "agent",
-      "text": "OKO session in progress: Maya, DeShawn, and Imani are working on writing y = mx + b from tables. OKO is having them identify the rate of change between rows before writing the equation."
-    },
-    {
-      "t": 0.44,
-      "action": "msg",
-      "type": "agent",
-      "text": "OKO session complete! Maya nailed rate of change from tables (92%). DeShawn (85%) still sometimes confuses the initial value with the first y-value. Imani (88%) is solid."
-    },
-    {
-      "t": 0.45,
-      "action": "move-card",
-      "card": "oko-equations",
-      "col": "done"
-    },
-    {
-      "t": 0.46,
-      "action": "msg",
-      "type": "action",
-      "text": "✓ “OKO Group: Writing Equations from Tables” → Done"
-    },
-    {
-      "t": 0.48,
-      "action": "msg",
-      "type": "system",
-      "text": "── Tuesday, Nov 4 ──"
-    },
-    {
-      "t": 0.49,
-      "action": "msg",
-      "type": "agent",
-      "text": "Assessment results are in. Here’s what I found:"
-    },
-    {
-      "t": 0.5,
-      "action": "msg",
-      "type": "agent",
-      "text": "• 58% struggled to calculate slope from two coordinate points (Lesson 10 skill)\n• 6 students can’t reliably write y = mx + b from a graph\n• Aaliyah, Jayden, and 3 others still shaky on proportional relationships (Grade 7 gap)\n• Darius and Zara aced everything — ready for extension\n\nThis matters because Unit 4 Lessons 1–4 assume students can recognize equivalent forms of equations."
-    },
-    {
-      "t": 0.52,
-      "action": "move-card",
-      "card": "assess",
-      "col": "review"
-    },
-    {
-      "t": 0.53,
-      "action": "msg",
-      "type": "action",
-      "text": "→ “Run Unit 3 Assessment” → Review"
-    },
-    {
-      "t": 0.54,
-      "action": "msg",
-      "type": "teacher",
-      "text": "Okay, those results confirm what I was seeing in class. Go ahead and start Marcus and the slope group. And since Darius and Zara clearly don’t need the review, let’s approve that challenge card now."
-    },
-    {
-      "t": 0.55,
-      "action": "approve-card",
-      "card": "challenge"
-    },
-    {
-      "t": 0.56,
-      "action": "msg",
-      "type": "agent",
-      "text": "Approved! Starting targeted interventions. OKO will run the slope group with Jayden, Aisha, and Carlos using real-world rate-of-change contexts from Lessons 6–7. Marcus gets Brisk practice on slope vs. y-intercept."
-    },
-    {
-      "t": 0.57,
-      "action": "move-card",
-      "card": "oko-slope",
-      "col": "progress"
-    },
-    {
-      "t": 0.58,
-      "action": "move-card",
-      "card": "marcus",
-      "col": "progress"
-    },
-    {
-      "t": 0.59,
-      "action": "msg",
-      "type": "action",
-      "text": "→ OKO Slope & Marcus → In Progress"
-    },
-    {
-      "t": 0.62,
-      "action": "msg",
-      "type": "agent",
-      "text": "Marcus had a breakthrough on Brisk! He was reading the coefficient of x as the y-intercept. After working through three graphs where he plotted the y-intercept first, then used slope to find a second point, he got 11/12 correct."
-    },
-    {
-      "t": 0.63,
-      "action": "move-card",
-      "card": "marcus",
-      "col": "done"
-    },
-    {
-      "t": 0.64,
-      "action": "msg",
-      "type": "teacher",
-      "text": "That’s great about Marcus. I noticed the same thing in class — he kept mixing up m and b. Glad Brisk caught it."
-    },
-    {
-      "t": 0.65,
-      "action": "msg",
-      "type": "action",
-      "text": "✓ “Extra Practice: Marcus” → Done"
-    },
-    {
-      "t": 0.67,
-      "action": "msg",
-      "type": "system",
-      "text": "── Wednesday, Nov 5 ──"
-    },
-    {
-      "t": 0.68,
-      "action": "msg",
-      "type": "agent",
-      "text": "OKO slope group wrapped up. Aisha and Carlos can now calculate slope from two points. Jayden still reverses rise and run sometimes — flagging for follow-up. Starting Aaliyah’s Brisk practice on proportional relationships."
-    },
-    {
-      "t": 0.69,
-      "action": "move-card",
-      "card": "oko-slope",
-      "col": "done"
-    },
-    {
-      "t": 0.7,
-      "action": "move-card",
-      "card": "aaliyah",
-      "col": "progress"
-    },
-    {
-      "t": 0.71,
-      "action": "msg",
-      "type": "action",
-      "text": "✓ OKO Slope group → Done"
-    },
-    {
-      "t": 0.73,
-      "action": "msg",
-      "type": "agent",
-      "text": "Assessment analysis approved. Unlocking the lesson revision task. I’ll use coteach.ai to adjust Unit 4 Lessons 1–4 based on what we learned."
-    },
-    {
-      "t": 0.74,
-      "action": "move-card",
-      "card": "assess",
-      "col": "done"
-    },
-    {
-      "t": 0.75,
-      "action": "move-card",
-      "card": "revise",
-      "col": "progress"
-    },
-    {
-      "t": 0.76,
-      "action": "msg",
-      "type": "action",
-      "text": "🔗 Dependency resolved: Assessment → Lesson Revision"
-    },
-    {
-      "t": 0.77,
-      "action": "msg",
-      "type": "agent",
-      "text": "coteach.ai is adjusting the lessons. For Lesson 1 (Writing Equivalent Equations), adding a warm-up reviewing what “equivalent” means with simple number examples. For Lesson 2 (Keeping the Equation Balanced), adding extra hanger diagram practice."
-    },
-    {
-      "t": 0.79,
-      "action": "move-card",
-      "card": "aaliyah",
-      "col": "done"
-    },
-    {
-      "t": 0.8,
-      "action": "move-card",
-      "card": "challenge",
-      "col": "progress"
-    },
-    {
-      "t": 0.81,
-      "action": "msg",
-      "type": "agent",
-      "text": "Aaliyah completed her Brisk practice. She can now distinguish y = kx from y = mx + b. Darius and Zara are starting the error analysis challenge."
-    },
-    {
-      "t": 0.82,
-      "action": "msg",
-      "type": "action",
-      "text": "✓ Aaliyah → Done · Challenge group started"
-    },
-    {
-      "t": 0.84,
-      "action": "msg",
-      "type": "system",
-      "text": "── Thursday, Nov 6 ──"
-    },
-    {
-      "t": 0.85,
-      "action": "msg",
-      "type": "agent",
-      "text": "coteach.ai finished the lesson revisions. Starting practice analysis and the hanger diagram game today."
-    },
-    {
-      "t": 0.86,
-      "action": "move-card",
-      "card": "revise",
-      "col": "review"
-    },
-    {
-      "t": 0.87,
-      "action": "move-card",
-      "card": "analyze",
-      "col": "progress"
-    },
-    {
-      "t": 0.88,
-      "action": "move-card",
-      "card": "game",
-      "col": "progress"
-    },
-    {
-      "t": 0.89,
-      "action": "msg",
-      "type": "action",
-      "text": "→ Lesson revision → Review · Analysis & Game → In Progress"
-    },
-    {
-      "t": 0.91,
-      "action": "msg",
-      "type": "agent",
-      "text": "Practice analysis complete. Top 3 bugs across the class:\n1. Confusing slope and y-intercept when equation is written as y = b + mx (41%)\n2. Calculating slope as run/rise instead of rise/run (28%)\n3. Not recognizing that a negative slope means the line goes down (19%)\n\nCreating a targeted video on slope from two points."
-    },
-    {
-      "t": 0.92,
-      "action": "move-card",
-      "card": "analyze",
-      "col": "done"
-    },
-    {
-      "t": 0.93,
-      "action": "move-card",
-      "card": "video",
-      "col": "progress"
-    },
-    {
-      "t": 0.94,
-      "action": "msg",
-      "type": "teacher",
-      "text": "That y = b + mx confusion is real — I see it every year. Make sure the video shows both forms side by side."
-    },
-    {
-      "t": 0.95,
-      "action": "msg",
-      "type": "action",
-      "text": "🔗 Dependency resolved: Analysis → Video creation"
-    },
-    {
-      "t": 0.96,
-      "action": "msg",
-      "type": "system",
-      "text": "── Friday, Nov 7 ──"
-    },
-    {
-      "t": 0.97,
-      "action": "msg",
-      "type": "agent",
-      "text": "Last day! Video is rendered with both equation forms shown side by side as you requested. Hanger diagram game is ready for review. Darius and Zara crushed the error analysis — they found all 4 errors in Lin’s solution path."
-    },
-    {
-      "t": 0.98,
-      "action": "move-card",
-      "card": "video",
-      "col": "review"
-    },
-    {
-      "t": 0.99,
-      "action": "move-card",
-      "card": "game",
-      "col": "review"
-    },
-    {
-      "t": 1,
-      "action": "move-card",
-      "card": "challenge",
-      "col": "done"
-    },
-    {
-      "t": 1.01,
-      "action": "msg",
-      "type": "action",
-      "text": "→ Video & Game → Review · Challenge → Done"
-    },
-    {
-      "t": 1.03,
-      "action": "msg",
-      "type": "teacher",
-      "text": "The revised lessons look great. Go ahead and push the video for weekend homework and assign the hanger game before Monday."
-    },
-    {
-      "t": 1.04,
-      "action": "move-card",
-      "card": "revise",
-      "col": "done"
-    },
-    {
-      "t": 1.05,
-      "action": "move-card",
-      "card": "video",
-      "col": "done"
-    },
-    {
-      "t": 1.06,
-      "action": "move-card",
-      "card": "game",
-      "col": "done"
-    },
-    {
-      "t": 1.07,
-      "action": "move-card",
-      "card": "assign-game",
-      "col": "progress"
-    },
-    {
-      "t": 1.08,
-      "action": "msg",
-      "type": "action",
-      "text": "🔗 Dependency resolved: Game → Assign to class"
-    },
-    {
-      "t": 1.09,
-      "action": "move-card",
-      "card": "assign-game",
-      "col": "done"
-    },
-    {
-      "t": 1.1,
-      "action": "msg",
-      "type": "agent",
-      "text": "Week complete! 🎉\n\n✅ 11/11 tasks done\n📊 Unit 3 assessed — slope from two points was the biggest gap\n✏️ Unit 4 Lessons 1–4 revised via coteach.ai\n👥 Both OKO groups closed key gaps\n👤 Marcus and Aaliyah caught up via Brisk\n🌟 Darius & Zara completed error analysis extension\n🎬 Slope video assigned for homework\n🎮 Hanger diagram game assigned for Lesson 2 prep"
-    },
-    {
-      "t": 1.11,
-      "action": "msg",
-      "type": "teacher",
-      "text": "Great week. Feeling much better about starting Unit 4 on Monday. 🙏"
-    },
-    {
-      "t": 1.12,
-      "action": "msg",
-      "type": "action",
-      "text": "✓ All tasks complete — ready to launch Unit 4 on Monday!"
-    }
+    {"t": 0.00, "action": "sidebar-open"},
+    {"t": 0.01, "action": "msg", "type": "system", "text": "── Monday, Nov 3 ──"},
+    {"t": 0.02, "action": "msg", "type": "teacher", "text": "Morning! I gave the Unit 3 assessment on Friday. Can you analyze the results while I teach Lesson 1 today? I'm jumping straight into Unit 4."},
+    {"t": 0.04, "action": "msg", "type": "agent", "text": "On it. I'll have the results analyzed by this afternoon. In the meantime, here are the tasks I'd recommend for this week alongside your Lessons 1–4. Please review and approve."},
+    {"t": 0.06, "action": "add-card", "card": "assess", "col": "todo"},
+    {"t": 0.07, "action": "add-card", "card": "oko-equations", "col": "todo"},
+    {"t": 0.08, "action": "add-card", "card": "oko-slope", "col": "todo"},
+    {"t": 0.09, "action": "add-card", "card": "marcus", "col": "todo"},
+    {"t": 0.10, "action": "add-card", "card": "aaliyah", "col": "todo"},
+    {"t": 0.11, "action": "add-card", "card": "revise", "col": "todo"},
+    {"t": 0.12, "action": "add-card", "card": "challenge", "col": "todo"},
+    {"t": 0.13, "action": "add-card", "card": "analyze", "col": "todo"},
+    {"t": 0.14, "action": "add-card", "card": "video", "col": "todo"},
+    {"t": 0.15, "action": "add-card", "card": "game", "col": "todo"},
+    {"t": 0.16, "action": "add-card", "card": "assign-game", "col": "todo"},
+    {"t": 0.17, "action": "msg", "type": "action", "text": "✓ 11 tasks created · 4 with dependencies"},
+
+    {"t": 0.19, "action": "msg", "type": "teacher", "text": "Looks good. Let me go through them."},
+    {"t": 0.20, "action": "approve-card", "card": "assess"},
+    {"t": 0.21, "action": "approve-card", "card": "oko-equations"},
+    {"t": 0.22, "action": "approve-card", "card": "oko-slope"},
+    {"t": 0.23, "action": "approve-card", "card": "marcus"},
+    {"t": 0.24, "action": "approve-card", "card": "aaliyah"},
+    {"t": 0.25, "action": "approve-card", "card": "revise"},
+    {"t": 0.26, "action": "reject-card", "card": "challenge"},
+    {"t": 0.27, "action": "msg", "type": "teacher", "text": "Hold off on the extension for Darius and Zara. Let me see the assessment results first."},
+    {"t": 0.28, "action": "msg", "type": "agent", "text": "Got it — challenge card on hold until we have data."},
+    {"t": 0.29, "action": "approve-card", "card": "analyze"},
+    {"t": 0.30, "action": "approve-card", "card": "video"},
+    {"t": 0.31, "action": "approve-card", "card": "game"},
+    {"t": 0.32, "action": "approve-card", "card": "assign-game"},
+    {"t": 0.33, "action": "msg", "type": "action", "text": "✓ 10 approved · 1 on hold"},
+
+    {"t": 0.35, "action": "msg", "type": "agent", "text": "Starting the assessment analysis and the OKO equations group. Maya, DeShawn, and Imani will work with OKO while you teach Lesson 1."},
+    {"t": 0.36, "action": "move-card", "card": "assess", "col": "progress"},
+    {"t": 0.37, "action": "move-card", "card": "oko-equations", "col": "progress"},
+    {"t": 0.38, "action": "msg", "type": "action", "text": "→ Assessment Analysis & OKO Equations → In Progress"},
+
+    {"t": 0.41, "action": "msg", "type": "teacher", "text": "Just finished Lesson 1 — Writing Equivalent Equations. Most kids got the idea that 2x + 3 = 7 and 2x = 4 are equivalent, but about a third couldn't explain WHY. They just want to memorize steps."},
+    {"t": 0.42, "action": "msg", "type": "agent", "text": "That's common with Lesson 1. For tomorrow's Lesson 2 on hanger diagrams, try having students explain the 'why' using the balance metaphor before writing any symbols. That bridges the conceptual gap."},
+
+    {"t": 0.44, "action": "msg", "type": "agent", "text": "OKO session complete! Maya nailed rate of change from tables (92%). DeShawn (85%) still confuses the initial value with the first y-value. Imani (88%) is solid."},
+    {"t": 0.45, "action": "move-card", "card": "oko-equations", "col": "done"},
+    {"t": 0.46, "action": "msg", "type": "action", "text": "✓ OKO Group: Writing Equations from Tables → Done"},
+
+    {"t": 0.48, "action": "msg", "type": "system", "text": "── Tuesday, Nov 4 ──"},
+    {"t": 0.49, "action": "msg", "type": "agent", "text": "Assessment results are in:"},
+    {"t": 0.50, "action": "msg", "type": "agent", "text": "• 58% struggled to calculate slope from two coordinate points\n• 6 students can't reliably write y = mx + b from a graph\n• Aaliyah, Jayden, and 3 others still shaky on proportional relationships (Grade 7 gap)\n• Darius and Zara aced everything — ready for extension"},
+    {"t": 0.52, "action": "move-card", "card": "assess", "col": "review"},
+    {"t": 0.53, "action": "msg", "type": "action", "text": "→ Assessment Analysis → Review"},
+
+    {"t": 0.54, "action": "msg", "type": "teacher", "text": "Those results confirm what I saw in Lesson 1. Go ahead and start Marcus on Brisk and the slope group on OKO. And since Darius and Zara clearly don't need review — approve the challenge card."},
+    {"t": 0.55, "action": "approve-card", "card": "challenge"},
+    {"t": 0.56, "action": "msg", "type": "agent", "text": "Approved! Starting interventions. Marcus gets Brisk on slope vs. y-intercept, OKO runs the slope group with Jayden, Aisha, and Carlos."},
+    {"t": 0.57, "action": "move-card", "card": "oko-slope", "col": "progress"},
+    {"t": 0.58, "action": "move-card", "card": "marcus", "col": "progress"},
+    {"t": 0.59, "action": "msg", "type": "action", "text": "→ OKO Slope & Marcus → In Progress"},
+
+    {"t": 0.61, "action": "msg", "type": "teacher", "text": "Just taught Lesson 2 — Keeping the Equation Balanced. The hanger diagrams were a hit! But Jayden and a few others kept wanting to 'solve' without explaining the balance. Marcus was really lost — glad he's getting Brisk time."},
+    {"t": 0.62, "action": "msg", "type": "agent", "text": "Good to hear the hangers worked. For Jayden — OKO is specifically working on the conceptual 'why' of each move, which should help. Also, Marcus just had a breakthrough on Brisk."},
+
+    {"t": 0.63, "action": "msg", "type": "agent", "text": "Marcus completed his Brisk session — he was reading the coefficient of x as the y-intercept. After working through three graphs where he plotted the y-intercept first, then used slope to find the next point, he got 11/12 correct."},
+    {"t": 0.64, "action": "move-card", "card": "marcus", "col": "done"},
+    {"t": 0.65, "action": "msg", "type": "teacher", "text": "That's great! I noticed the same thing in class — he kept mixing up m and b. I'll check in with him tomorrow to see if it sticks."},
+    {"t": 0.66, "action": "msg", "type": "action", "text": "✓ Extra Practice: Marcus → Done"},
+
+    {"t": 0.68, "action": "msg", "type": "system", "text": "── Wednesday, Nov 5 ──"},
+    {"t": 0.69, "action": "msg", "type": "agent", "text": "OKO slope group wrapped up. Aisha and Carlos can now calculate slope from two points and explain it in context. Jayden still reverses rise and run sometimes — flagging for follow-up."},
+    {"t": 0.70, "action": "move-card", "card": "oko-slope", "col": "done"},
+    {"t": 0.71, "action": "msg", "type": "action", "text": "✓ OKO Slope group → Done"},
+    {"t": 0.72, "action": "move-card", "card": "aaliyah", "col": "progress"},
+    {"t": 0.73, "action": "msg", "type": "agent", "text": "Starting Aaliyah's Brisk practice on proportional relationships. Also — assessment analysis is approved, so I'm unlocking the lesson revision task with coteach.ai."},
+    {"t": 0.74, "action": "move-card", "card": "assess", "col": "done"},
+    {"t": 0.75, "action": "move-card", "card": "revise", "col": "progress"},
+    {"t": 0.76, "action": "msg", "type": "action", "text": "🔗 Dependency resolved: Assessment → Lesson Revision"},
+
+    {"t": 0.78, "action": "msg", "type": "teacher", "text": "Just finished Lesson 3 — Balanced Moves. This was TOUGH. When we moved from hanger diagrams to actual equations, about half the class couldn't connect the moves. Can coteach.ai add more bridge problems for Lesson 4 tomorrow?"},
+    {"t": 0.79, "action": "msg", "type": "agent", "text": "Absolutely. I'll have coteach.ai add transition problems to Lesson 4 that show the hanger diagram side-by-side with the equation for each step. Students can see both representations at once."},
+
+    {"t": 0.81, "action": "move-card", "card": "aaliyah", "col": "done"},
+    {"t": 0.82, "action": "msg", "type": "agent", "text": "Aaliyah completed her Brisk practice. She can now distinguish y = kx (proportional, through origin) from y = mx + b (linear, with y-intercept). That Grade 7 gap is closed."},
+    {"t": 0.83, "action": "move-card", "card": "challenge", "col": "progress"},
+    {"t": 0.84, "action": "msg", "type": "action", "text": "✓ Aaliyah → Done · Challenge group started"},
+
+    {"t": 0.86, "action": "msg", "type": "system", "text": "── Thursday, Nov 6 ──"},
+    {"t": 0.87, "action": "msg", "type": "agent", "text": "coteach.ai finished revising Lesson 4 with the hanger-to-equation bridge problems you asked for. Also starting the practice bug analysis and the hanger diagram game today."},
+    {"t": 0.88, "action": "move-card", "card": "revise", "col": "review"},
+    {"t": 0.89, "action": "move-card", "card": "analyze", "col": "progress"},
+    {"t": 0.90, "action": "move-card", "card": "game", "col": "progress"},
+    {"t": 0.91, "action": "msg", "type": "action", "text": "→ Lesson revision → Review · Analysis & Game → In Progress"},
+
+    {"t": 0.93, "action": "msg", "type": "teacher", "text": "Lesson 4 went WAY better than yesterday! The side-by-side hanger/equation problems from coteach.ai made a huge difference. Even DeShawn was explaining the balanced moves to his partner. 🙌"},
+    {"t": 0.94, "action": "msg", "type": "agent", "text": "That's great to hear! I'll note that the side-by-side scaffold worked so we can use it again. Meanwhile, the practice analysis found the top 3 bugs across the class:"},
+    {"t": 0.95, "action": "msg", "type": "agent", "text": "1. Confusing slope and y-intercept when equation is y = b + mx (41%)\n2. Calculating slope as run/rise instead of rise/run (28%)\n3. Not recognizing that a negative slope means the line goes down (19%)\n\nCreating a video on slope from two points."},
+    {"t": 0.96, "action": "move-card", "card": "analyze", "col": "done"},
+    {"t": 0.97, "action": "move-card", "card": "video", "col": "progress"},
+    {"t": 0.98, "action": "msg", "type": "teacher", "text": "That y = b + mx confusion is real — I see it every year. Make sure the video shows both forms side by side so kids recognize the slope no matter where it appears."},
+    {"t": 0.99, "action": "msg", "type": "action", "text": "🔗 Dependency resolved: Analysis → Video creation"},
+
+    {"t": 1.01, "action": "msg", "type": "system", "text": "── Friday, Nov 7 ──"},
+    {"t": 1.02, "action": "msg", "type": "agent", "text": "Last day of the week! Video is rendered with both equation forms side by side as you asked. Hanger diagram game is ready. And Darius and Zara crushed the error analysis — they found all 4 errors in Lin's solution path."},
+    {"t": 1.03, "action": "move-card", "card": "video", "col": "review"},
+    {"t": 1.04, "action": "move-card", "card": "game", "col": "review"},
+    {"t": 1.05, "action": "move-card", "card": "challenge", "col": "done"},
+    {"t": 1.06, "action": "msg", "type": "action", "text": "→ Video & Game → Review · Challenge → Done"},
+
+    {"t": 1.08, "action": "msg", "type": "teacher", "text": "The revised Lesson 4 materials look great — approve them. Push the slope video for weekend homework and assign the hanger game as extra practice."},
+    {"t": 1.09, "action": "move-card", "card": "revise", "col": "done"},
+    {"t": 1.10, "action": "move-card", "card": "video", "col": "done"},
+    {"t": 1.11, "action": "move-card", "card": "game", "col": "done"},
+    {"t": 1.12, "action": "move-card", "card": "assign-game", "col": "progress"},
+    {"t": 1.13, "action": "msg", "type": "action", "text": "🔗 Dependency resolved: Game → Assign to class"},
+    {"t": 1.14, "action": "move-card", "card": "assign-game", "col": "done"},
+
+    {"t": 1.16, "action": "msg", "type": "agent", "text": "Week complete! 🎉\n\n📚 Lessons 1–4 taught — hanger diagrams clicked after coteach.ai added bridge problems\n📊 Unit 3 gaps identified — slope from two points was the biggest\n👥 Both OKO groups closed key gaps\n👤 Marcus and Aaliyah caught up via Brisk\n🌟 Darius & Zara completed error analysis extension\n🎬 Slope video assigned for weekend\n🎮 Hanger diagram game assigned for extra practice"},
+    {"t": 1.17, "action": "msg", "type": "teacher", "text": "Great week. Lessons 1–4 are done and I feel way better about where the kids are. The coteach.ai adjustment for Lesson 4 was a game-changer. See you Monday for Lesson 5! 🙏"},
+    {"t": 1.18, "action": "msg", "type": "action", "text": "✓ All tasks complete · Lessons 1–4 taught · On to Lesson 5 Monday!"}
   ]
 }

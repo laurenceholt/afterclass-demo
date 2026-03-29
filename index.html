@@ -396,11 +396,11 @@ function tick(){
   if(!isPlaying)return;const now=performance.now();
   const elapsed=(now-animationStart-pausedElapsed)*speedMultiplier;
   const maxT=TIMELINE.length>0?TIMELINE[TIMELINE.length-1].t:1;
-  // Only advance one event per tick to pace the animation
-  if(currentEventIndex<TIMELINE.length){
-    const targetT=TIMELINE[currentEventIndex].t;
-    const targetElapsed=targetT/maxT*WEEK_DURATION;
-    if(elapsed>=targetElapsed){processEvent(TIMELINE[currentEventIndex]);currentEventIndex++;}
+  // Process all events whose time has come
+  while(currentEventIndex<TIMELINE.length){
+    const targetElapsed=TIMELINE[currentEventIndex].t/maxT*WEEK_DURATION;
+    if(elapsed<targetElapsed)break;
+    processEvent(TIMELINE[currentEventIndex]);currentEventIndex++;
   }
   const displayProg=Math.min(elapsed/WEEK_DURATION,1);
   document.getElementById('timeDisplay').textContent=getTimeForProgress(displayProg);
