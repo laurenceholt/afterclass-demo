@@ -74,19 +74,16 @@
   }
   .card-icon-row { display: flex; align-items: center; gap: 7px; }
   .card-type-icon {
-    width: 25px; height: 25px; border-radius: 7px;
+    width: 28px; height: 28px; border-radius: 7px;
     display: flex; align-items: center; justify-content: center;
     font-size: 12px; flex-shrink: 0;
   }
-  .card-type-icon.student { background: #eff6ff; }
-  .card-type-icon.group { background: #fef3c7; }
-  .card-type-icon.challenge { background: #f0fdf4; }
-  .card-type-icon.lesson { background: #faf5ff; }
-  .card-type-icon.assessment { background: #fef2f2; }
-  .card-type-icon.game { background: #ecfdf5; }
-  .card-type-icon.video { background: #fff1f2; }
-  .card-type-icon.analysis { background: #f0f9ff; }
-  .card-type-icon.assign { background: #f5f3ff; }
+  .card-type-icon svg { width: 16px; height: 16px; }
+  .card-type-icon.student, .card-type-icon.group, .card-type-icon.challenge,
+  .card-type-icon.lesson, .card-type-icon.assessment, .card-type-icon.game,
+  .card-type-icon.video, .card-type-icon.analysis, .card-type-icon.assign {
+    background: transparent; border: 1.5px solid #ccc;
+  }
   .card-title { font-size: 12.5px; font-weight: 600; color: #1a1a1a; line-height: 1.3; }
   .card-desc { font-size: 10.5px; color: #999; line-height: 1.4; }
   .card-math-preview {
@@ -121,16 +118,17 @@
     display: flex; gap: 6px; align-items: center;
   }
   .approve-btn, .reject-btn {
-    width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid #ddd;
-    background: #fff; display: flex; align-items: center; justify-content: center;
-    font-size: 13px; cursor: pointer; transition: all 0.2s;
+    width: 22px; height: 22px; border-radius: 0; border: none;
+    background: transparent; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.2s; padding: 0;
   }
-  .approve-btn:hover { border-color: #22c55e; background: #f0fdf4; }
-  .reject-btn:hover { border-color: #ef4444; background: #fef2f2; }
+  .approve-btn svg, .reject-btn svg { width: 18px; height: 18px; }
+  .approve-btn:hover svg { stroke: #16a34a; }
+  .reject-btn:hover svg { stroke: #dc2626; }
   .card.approved { border-color: #bbf7d0; background: #fafffe; }
-  .card.approved .approve-btn { background: #22c55e; border-color: #22c55e; color: #fff; }
+  .card.approved .approve-btn svg { stroke: #16a34a; stroke-width: 2.5; }
   .card.rejected { opacity: 0.45; border-color: #fecaca; }
-  .card.rejected .reject-btn { background: #ef4444; border-color: #ef4444; color: #fff; }
+  .card.rejected .reject-btn svg { stroke: #dc2626; stroke-width: 2.5; }
   .card.rejected .card-title { text-decoration: line-through; color: #aaa; }
   @keyframes approve-pop {
     0% { transform: scale(1); }
@@ -304,15 +302,27 @@ async function loadData(){const r=await fetch('data.json?t='+Date.now());const d
 const WEEK_DURATION=36000;
 let speedMultiplier=1,isPlaying=false,animationStart=null,animationFrame=null,currentEventIndex=0,sidebarOpen=false,pausedElapsed=0,lastPauseTime=null;
 
+const ICON_SVG={
+  assessment:'<svg viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="7" y1="17" x2="7" y2="11"/><line x1="12" y1="17" x2="12" y2="7"/><line x1="17" y1="17" x2="17" y2="13"/></svg>',
+  lesson:'<svg viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
+  group:'<svg viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+  student:'<svg viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+  challenge:'<svg viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+  analysis:'<svg viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
+  video:'<svg viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>',
+  game:'<svg viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>',
+  assign:'<svg viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>'
+};
 function renderCard(d, col){
   const c=document.createElement('div');c.className='card appearing';c.id='card-'+d.id;c.dataset.cardId=d.id;
-  let h='<div class="card-icon-row"><div class="card-type-icon '+d.iconClass+'">'+d.icon+'</div><div class="card-title">'+d.title+'</div></div>';
+  const iconSvg=ICON_SVG[d.iconClass]||d.icon;
+  let h='<div class="card-icon-row"><div class="card-type-icon '+d.iconClass+'">'+iconSvg+'</div><div class="card-title">'+d.title+'</div></div>';
   h+='<div class="card-desc">'+d.desc+'</div>';
   if(d.math)h+='<div class="card-math-preview">'+d.math+'</div>';
   if(d.students){h+='<div class="card-students">';d.students.forEach(s=>{h+='<div class="student-chip"><div class="avatar-mini">'+s.initials+'</div>'+s.name+'</div>';});h+='</div>';}
   h+='<div class="card-badges">';d.badges.forEach(b=>{h+='<span class="badge '+b.cls+'">'+b.text+'</span>';});h+='</div>';
   h+='<div class="card-bottom">';
-  if(col==='todo') h+='<div class="card-approval"><button class="approve-btn" title="Approve">✓</button><button class="reject-btn" title="Skip">✕</button></div>';
+  if(col==='todo') h+='<div class="card-approval"><button class="approve-btn" title="Approve"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button><button class="reject-btn" title="Skip"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>';
   if(d.due)h+='<span class="card-due">'+d.due+'</span>';
   h+='</div>';
   if(d.dependency)h+='<div class="card-dependency-indicator" title="Depends on: '+(CARDS[d.dependency]?.title||d.dependency)+'">🔗</div>';
