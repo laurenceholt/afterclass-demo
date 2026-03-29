@@ -125,17 +125,19 @@
   .approve-btn svg, .reject-btn svg { width: 18px; height: 18px; }
   .approve-btn:hover svg { stroke: #16a34a; }
   .reject-btn:hover svg { stroke: #dc2626; }
-  .card.approved { border-color: #bbf7d0; background: #fafffe; }
-  .card.approved .approve-btn svg { stroke: #16a34a; stroke-width: 2.5; }
+  .card.approved { border-color: #bbf7d0; background: #f0fdf4; }
+  .card.approved .approve-btn svg { stroke: #16a34a; stroke-width: 3; }
+  .card.approved .approve-btn { transform: scale(1.4); }
   .card.rejected { opacity: 0.45; border-color: #fecaca; }
-  .card.rejected .reject-btn svg { stroke: #dc2626; stroke-width: 2.5; }
+  .card.rejected .reject-btn svg { stroke: #dc2626; stroke-width: 3; }
+  .card.rejected .reject-btn { transform: scale(1.4); }
   .card.rejected .card-title { text-decoration: line-through; color: #aaa; }
   @keyframes approve-pop {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-    100% { transform: scale(1); }
+    0% { transform: scale(1); box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+    40% { transform: scale(1.04); box-shadow: 0 0 0 3px rgba(34,197,94,0.25); }
+    100% { transform: scale(1); box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
   }
-  .card.approve-anim { animation: approve-pop 0.4s ease; }
+  .card.approve-anim { animation: approve-pop 0.6s ease; }
 
   .card-bottom { display: flex; align-items: center; justify-content: space-between; }
   .card-avatar {
@@ -339,7 +341,7 @@ function moveCard(id,col){
   updateCounts();
   var appr=el.querySelector('.card-approval');if(appr)appr.remove();
   el.classList.remove('approved','rejected');
-  if(col==='done'){var due=el.querySelector('.card-due');if(due)due.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';}
+  if(col==='done'){var due=el.querySelector('.card-due');if(due)due.remove();}
   drawArrows();
   setTimeout(function(){el.classList.remove('moving');},800);
 }
