@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Afterclass — Author</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%237c5ce7'/%3E%3Cstop offset='100%25' stop-color='%23a78bfa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3Cpath d='M16 6 L24 26 L20.5 26 L19 22 L13 22 L11.5 26 L8 26 Z M16 11 L13.8 20 L18.2 20 Z' fill='white'/%3E%3C/svg%3E">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',sans-serif; background:#f5f5f5; color:#1a1a1a; }
+  .top-bar {
+    background:#2a2a2e; color:#fff; padding:14px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .top-bar h1 { font-size:16px; font-weight:700; display:flex; align-items:center; gap:10px; }
+  .top-bar .logo { width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#7c5ce7,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700; }
+  .top-actions { display:flex; gap:8px; }
+  .top-btn {
+    padding:6px 14px; border-radius:8px; border:1px solid #555;
+    background:transparent; color:#ccc; font-size:12px; font-weight:600;
+    cursor:pointer;
+  }
+  .top-btn:hover { background:#444; color:#fff; }
+  .top-btn.primary { background:#7c5ce7; border-color:#7c5ce7; color:#fff; }
+  .top-btn.primary:hover { background:#6b4fd6; }
+
+  .tabs { display:flex; border-bottom:2px solid #e5e5e5; padding:0 28px; background:#fff; }
+  .tab {
+    padding:12px 20px; font-size:13px; font-weight:600; color:#888;
+    cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px;
+    transition:all 0.2s;
+  }
+  .tab.active { color:#7c5ce7; border-bottom-color:#7c5ce7; }
+  .tab:hover { color:#555; }
+
+  .tab-content { display:none; padding:24px 28px; max-width:1200px; }
+  .tab-content.active { display:block; }
+
+  /* CARDS TAB */
+  .cards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(360px,1fr)); gap:16px; }
+  .card-editor {
+    background:#fff; border-radius:12px; border:1px solid #e5e5e5;
+    padding:16px; display:flex; flex-direction:column; gap:10px;
+  }
+  .card-editor-header { display:flex; align-items:center; justify-content:space-between; }
+  .card-editor-id { font-size:11px; font-weight:600; color:#999; background:#f0f0f0; padding:2px 8px; border-radius:4px; }
+  .card-editor-dep { font-size:11px; color:#3b82f6; font-weight:500; }
+  .field { display:flex; flex-direction:column; gap:3px; }
+  .field label { font-size:11px; font-weight:600; color:#888; text-transform:uppercase; letter-spacing:0.5px; }
+  .field input, .field textarea, .field select {
+    border:1px solid #e5e5e5; border-radius:8px; padding:8px 10px;
+    font-size:13px; font-family:inherit; outline:none; resize:vertical;
+  }
+  .field input:focus, .field textarea:focus { border-color:#7c5ce7; }
+  .field textarea { min-height:50px; }
+  .field-row { display:flex; gap:8px; }
+  .field-row .field { flex:1; }
+  .students-editor { display:flex; flex-direction:column; gap:4px; }
+  .student-row { display:flex; align-items:center; gap:6px; }
+  .student-row input { flex:1; padding:5px 8px; font-size:12px; }
+  .student-row .remove-student {
+    width:22px; height:22px; border-radius:50%; border:none;
+    background:#fee; color:#e44; font-size:14px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .add-student-btn {
+    padding:4px 10px; border-radius:6px; border:1px dashed #ccc;
+    background:transparent; color:#888; font-size:11px; cursor:pointer;
+    align-self:flex-start;
+  }
+  .badges-editor { display:flex; gap:4px; flex-wrap:wrap; }
+  .badge-edit {
+    display:flex; align-items:center; gap:2px;
+    background:#f5f5f5; border-radius:6px; padding:2px 4px 2px 8px;
+    font-size:11px; color:#555;
+  }
+  .badge-edit button {
+    width:16px; height:16px; border-radius:50%; border:none;
+    background:transparent; color:#bbb; font-size:12px; cursor:pointer;
+  }
+
+  /* CHAT TAB */
+  .chat-list { display:flex; flex-direction:column; gap:8px; max-width:800px; }
+  .chat-item {
+    background:#fff; border-radius:10px; border:1px solid #e5e5e5;
+    padding:12px 16px; display:flex; flex-direction:column; gap:6px;
+  }
+  .chat-item-header { display:flex; align-items:center; justify-content:space-between; }
+  .chat-item-meta { display:flex; align-items:center; gap:10px; }
+  .chat-item-time { font-size:11px; font-weight:600; color:#999; font-family:monospace; }
+  .chat-item-type {
+    font-size:10px; font-weight:600; padding:2px 8px; border-radius:4px;
+  }
+  .chat-item-type.agent { background:#f3f0ff; color:#7c5ce7; }
+  .chat-item-type.teacher { background:#dbeafe; color:#1d4ed8; }
+  .chat-item-type.system { background:#f0f0f0; color:#888; }
+  .chat-item-type.action { background:#f0fdf4; color:#16a34a; }
+  .chat-item-type.move-card { background:#eff6ff; color:#3b82f6; }
+  .chat-item-type.add-card { background:#fef3c7; color:#b45309; }
+  .chat-item-type.approve-card { background:#f0fdf4; color:#16a34a; }
+  .chat-item-type.reject-card { background:#fef2f2; color:#dc2626; }
+  .chat-item-type.sidebar-open { background:#f0f0f0; color:#888; }
+  .chat-item textarea {
+    border:1px solid #e5e5e5; border-radius:8px; padding:8px 10px;
+    font-size:13px; font-family:inherit; outline:none; resize:vertical;
+    min-height:40px; width:100%;
+  }
+  .chat-item textarea:focus { border-color:#7c5ce7; }
+  .chat-item-actions { display:flex; gap:6px; }
+  .chat-item-actions select {
+    padding:4px 8px; border:1px solid #e5e5e5; border-radius:6px;
+    font-size:11px; font-family:inherit;
+  }
+  .chat-item-actions input {
+    padding:4px 8px; border:1px solid #e5e5e5; border-radius:6px;
+    font-size:11px; width:60px; font-family:monospace;
+  }
+  .chat-item .remove-btn {
+    padding:4px 8px; border-radius:6px; border:1px solid #fcc;
+    background:#fff; color:#e44; font-size:11px; cursor:pointer;
+  }
+  .add-chat-btn {
+    padding:8px 16px; border-radius:8px; border:1px dashed #ccc;
+    background:#fff; color:#888; font-size:12px; cursor:pointer;
+    align-self:flex-start; margin-top:8px;
+  }
+  .add-chat-btn:hover { border-color:#7c5ce7; color:#7c5ce7; }
+
+  .toast {
+    position:fixed; bottom:20px; right:20px;
+    background:#22c55e; color:#fff; padding:10px 20px;
+    border-radius:10px; font-size:13px; font-weight:600;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    transform:translateY(60px); opacity:0;
+    transition:all 0.3s ease;
+  }
+  .toast.show { transform:translateY(0); opacity:1; }
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <h1><span class="logo"><svg viewBox="0 0 32 32" width="18" height="18"><path d="M16 4 L25 28 L21 28 L19 22.5 L13 22.5 L11 28 L7 28 Z M16 10 L13.5 20.5 L18.5 20.5 Z" fill="white"/></svg></span> Afterclass Author</h1>
+  <div class="top-actions">
+    <button class="top-btn" onclick="window.open('index.html','_blank')">↗ Preview Demo</button>
+    <button class="top-btn primary" onclick="saveData()">💾 Save</button>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('cards',this)">📋 Cards</div>
+  <div class="tab" onclick="switchTab('chat',this)">💬 Chat Timeline</div>
+</div>
+
+<div class="tab-content active" id="tab-cards"></div>
+<div class="tab-content" id="tab-chat"></div>
+
+<div class="toast" id="toast">Saved!</div>
+
+<script>
+let data = { cards: {}, timeline: [] };
+
+async function loadData() {
+  const r = await fetch('data.json?t=' + Date.now());
+  data = await r.json();
+  renderCards();
+  renderChat();
+}
+
+function switchTab(name, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+// ═══════════════════════════════════════
+// CARDS TAB
+// ═══════════════════════════════════════
+function renderCards() {
+  const container = document.getElementById('tab-cards');
+  let html = '<div class="cards-grid">';
+  Object.entries(data.cards).forEach(([id, card]) => {
+    html += `<div class="card-editor" data-id="${id}">
+      <div class="card-editor-header">
+        <span class="card-editor-id">${id}</span>
+        ${card.dependency ? `<span class="card-editor-dep">🔗 depends on: ${card.dependency}</span>` : ''}
+      </div>
+      <div class="field"><label>Title</label><input value="${esc(card.title)}" onchange="updateCard('${id}','title',this.value)"></div>
+      <div class="field"><label>Description</label><textarea onchange="updateCard('${id}','desc',this.value)">${esc(card.desc)}</textarea></div>
+      <div class="field-row">
+        <div class="field"><label>Icon</label><input value="${esc(card.icon)}" style="width:50px" onchange="updateCard('${id}','icon',this.value)"></div>
+        <div class="field"><label>Icon Class</label>
+          <select onchange="updateCard('${id}','iconClass',this.value)">
+            ${['student','group','challenge','lesson','assessment','game','video','analysis','assign'].map(c=>`<option ${card.iconClass===c?'selected':''}>${c}</option>`).join('')}
+          </select>
+        </div>
+        <div class="field"><label>Due</label><input value="${esc(card.due||'')}" onchange="updateCard('${id}','due',this.value)"></div>
+      </div>
+      <div class="field"><label>Math Preview</label><input value="${esc(card.math||'')}" onchange="updateCard('${id}','math',this.value)"></div>
+      <div class="field"><label>Dependency (card ID)</label><input value="${esc(card.dependency||'')}" onchange="updateCard('${id}','dependency',this.value||undefined)"></div>
+      ${card.students ? `<div class="field"><label>Students</label><div class="students-editor" id="students-${id}">
+        ${card.students.map((s,i) => `<div class="student-row">
+          <input value="${esc(s.name)}" placeholder="Name" onchange="updateStudent('${id}',${i},'name',this.value)">
+          <input value="${esc(s.initials)}" placeholder="Init" style="width:50px" onchange="updateStudent('${id}',${i},'initials',this.value)">
+          <button class="remove-student" onclick="removeStudent('${id}',${i})">×</button>
+        </div>`).join('')}
+        <button class="add-student-btn" onclick="addStudent('${id}')">+ Add Student</button>
+      </div></div>` : `<button class="add-student-btn" onclick="initStudents('${id}')">+ Add Students</button>`}
+    </div>`;
+  });
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function esc(s) { return (s||'').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+function updateCard(id, key, val) { data.cards[id][key] = val; }
+function updateStudent(id, i, key, val) { data.cards[id].students[i][key] = val; }
+function removeStudent(id, i) { data.cards[id].students.splice(i, 1); renderCards(); }
+function addStudent(id) { data.cards[id].students.push({name:'', initials:''}); renderCards(); }
+function initStudents(id) { data.cards[id].students = [{name:'', initials:''}]; renderCards(); }
+
+// ═══════════════════════════════════════
+// CHAT TAB
+// ═══════════════════════════════════════
+function renderChat() {
+  const container = document.getElementById('tab-chat');
+  let html = '<div class="chat-list">';
+  data.timeline.forEach((ev, i) => {
+    const typeLabel = ev.action === 'msg' ? ev.type : ev.action;
+    const typeCls = ev.action === 'msg' ? ev.type : ev.action;
+    html += `<div class="chat-item">
+      <div class="chat-item-header">
+        <div class="chat-item-meta">
+          <span class="chat-item-time">${ev.t.toFixed(2)}</span>
+          <span class="chat-item-type ${typeCls}">${typeLabel}</span>
+        </div>
+        <button class="remove-btn" onclick="removeTimeline(${i})">✕ Remove</button>
+      </div>`;
+    if (ev.action === 'msg') {
+      html += `<div class="chat-item-actions">
+        <select onchange="updateTimeline(${i},'type',this.value)">
+          <option ${ev.type==='teacher'?'selected':''}>teacher</option>
+          <option ${ev.type==='agent'?'selected':''}>agent</option>
+          <option ${ev.type==='system'?'selected':''}>system</option>
+          <option ${ev.type==='action'?'selected':''}>action</option>
+        </select>
+        <input value="${ev.t}" onchange="updateTimeline(${i},'t',parseFloat(this.value))">
+      </div>
+      <textarea onchange="updateTimeline(${i},'text',this.value)">${esc(ev.text)}</textarea>`;
+    } else if (ev.action === 'move-card' || ev.action === 'add-card') {
+      html += `<div class="chat-item-actions">
+        <input value="${ev.t}" style="width:60px" onchange="updateTimeline(${i},'t',parseFloat(this.value))">
+        <select onchange="updateTimeline(${i},'card',this.value)">
+          ${Object.keys(data.cards).map(c=>`<option ${ev.card===c?'selected':''}>${c}</option>`).join('')}
+        </select>
+        <select onchange="updateTimeline(${i},'col',this.value)">
+          ${['todo','progress','review','done'].map(c=>`<option ${ev.col===c?'selected':''}>${c}</option>`).join('')}
+        </select>
+      </div>`;
+    } else {
+      html += `<div class="chat-item-actions"><input value="${ev.t}" style="width:60px" onchange="updateTimeline(${i},'t',parseFloat(this.value))"></div>`;
+    }
+    html += '</div>';
+  });
+  html += '</div>';
+  html += '<button class="add-chat-btn" onclick="addTimelineEvent()">+ Add Event</button>';
+  container.innerHTML = html;
+}
+
+function updateTimeline(i, key, val) { data.timeline[i][key] = val; }
+function removeTimeline(i) { data.timeline.splice(i, 1); renderChat(); }
+function addTimelineEvent() {
+  const lastT = data.timeline.length > 0 ? data.timeline[data.timeline.length-1].t + 0.01 : 0;
+  data.timeline.push({ t: parseFloat(lastT.toFixed(2)), action: 'msg', type: 'agent', text: 'New message...' });
+  renderChat();
+  // Scroll to bottom
+  const chatEl = document.getElementById('tab-chat');
+  chatEl.scrollTop = chatEl.scrollHeight;
+}
+
+// ═══════════════════════════════════════
+// SAVE
+// ═══════════════════════════════════════
+async function saveData() {
+  try {
+    const resp = await fetch('/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data, null, 2)
+    });
+    if (resp.ok) {
+      showToast('Saved! Reload the demo to see changes.');
+    } else {
+      // Fallback to download (e.g. on Netlify)
+      fallbackDownload();
+    }
+  } catch (e) {
+    // No server endpoint (static hosting) — download instead
+    fallbackDownload();
+  }
+}
+
+function fallbackDownload() {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'data.json';
+  a.click();
+  showToast('Downloaded data.json (static hosting — replace file manually)');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+loadData();
+</script>
+</body>
+</html>

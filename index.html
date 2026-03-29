@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Afterclass — Math Instruction Demo</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%237c5ce7'/%3E%3Cstop offset='100%25' stop-color='%23a78bfa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3Cpath d='M16 6 L24 26 L20.5 26 L19 22 L13 22 L11.5 26 L8 26 Z M16 11 L13.8 20 L18.2 20 Z' fill='white'/%3E%3C/svg%3E">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f5f5f5; color: #1a1a1a; overflow: hidden; height: 100vh;
+  }
+  .app { display: flex; height: 100vh; }
+  .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+
+  /* HEADER */
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 28px; height: 52px; background: #fff;
+    border-bottom: 1px solid #e5e5e5; flex-shrink: 0;
+  }
+  .header-left { display: flex; align-items: center; gap: 16px; }
+  .stats-bar { display: flex; gap: 18px; align-items: center; font-size: 12px; color: #888; font-weight: 500; }
+  .stat { display: flex; align-items: center; gap: 4px; }
+  .header-tag { font-size: 11px; font-weight: 600; color: #777; background: #f0f0f0; padding: 3px 10px; border-radius: 6px; }
+  .btn-afterclass {
+    padding: 5px 12px; border-radius: 8px; border: 1px solid #7c5ce7;
+    background: transparent; color: #7c5ce7; font-size: 12px; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; gap: 5px;
+  }
+  .btn-afterclass:hover { background: #f5f3ff; }
+
+  /* COLUMNS */
+  .columns-wrapper { flex: 1; position: relative; overflow: hidden; }
+  .columns {
+    display: flex; gap: 14px; padding: 16px 20px;
+    height: 100%; overflow-x: auto; overflow-y: hidden;
+  }
+  .column {
+    min-width: 240px; flex: 1; background: #fff; border-radius: 14px;
+    border: 1px solid #e5e5e5; padding: 10px;
+    display: flex; flex-direction: column; gap: 8px; overflow-y: auto;
+  }
+  .column-header { display: flex; align-items: center; justify-content: space-between; padding: 4px 4px; }
+  .column-header-left { display: flex; align-items: center; gap: 8px; }
+  .column-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .column-dot.todo { background: #f97316; }
+  .column-dot.progress { background: #3b82f6; }
+  .column-dot.review { background: #eab308; }
+  .column-dot.done { background: #22c55e; }
+  .column-title { font-size: 13px; font-weight: 600; }
+  .column-count { font-size: 11px; font-weight: 600; color: #888; background: #f0f0f0; border-radius: 6px; padding: 1px 7px; }
+  .column-add { width: 22px; height: 22px; border-radius: 6px; border: none; background: transparent; color: #ccc; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+  /* CARDS */
+  .card {
+    background: #fff; border-radius: 12px; padding: 11px 13px;
+    border: 1px solid #eee; box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    display: flex; flex-direction: column; gap: 6px;
+    cursor: default; transition: all 0.5s ease; position: relative;
+  }
+  .card.moving { animation: card-glow 0.8s ease; }
+  @keyframes card-glow {
+    0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.3); transform: scale(1); }
+    50% { box-shadow: 0 0 16px 3px rgba(59,130,246,0.15); transform: scale(1.015); }
+    100% { box-shadow: 0 1px 4px rgba(0,0,0,0.04); transform: scale(1); }
+  }
+  .card.appearing { animation: card-appear 0.5s ease; }
+  @keyframes card-appear {
+    0% { opacity: 0; transform: translateY(-8px) scale(0.97); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .card-icon-row { display: flex; align-items: center; gap: 7px; }
+  .card-type-icon {
+    width: 25px; height: 25px; border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; flex-shrink: 0;
+  }
+  .card-type-icon.student { background: #eff6ff; }
+  .card-type-icon.group { background: #fef3c7; }
+  .card-type-icon.challenge { background: #f0fdf4; }
+  .card-type-icon.lesson { background: #faf5ff; }
+  .card-type-icon.assessment { background: #fef2f2; }
+  .card-type-icon.game { background: #ecfdf5; }
+  .card-type-icon.video { background: #fff1f2; }
+  .card-type-icon.analysis { background: #f0f9ff; }
+  .card-type-icon.assign { background: #f5f3ff; }
+  .card-title { font-size: 12.5px; font-weight: 600; color: #1a1a1a; line-height: 1.3; }
+  .card-desc { font-size: 10.5px; color: #999; line-height: 1.4; }
+  .card-math-preview {
+    background: #f8f9fa; border-radius: 6px; padding: 5px 7px;
+    font-family: 'Courier New', monospace; font-size: 10px;
+    color: #666; border: 1px solid #eee;
+  }
+  .card-students { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+  .student-chip {
+    display: flex; align-items: center; gap: 3px;
+    background: #f3f0ff; border-radius: 10px;
+    padding: 2px 7px 2px 2px; font-size: 10px; color: #6b5ce7; font-weight: 500;
+  }
+  .student-chip .avatar-mini {
+    width: 15px; height: 15px; border-radius: 50%;
+    font-size: 7px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; background: #8b5cf6;
+  }
+  .card-badges { display: flex; gap: 4px; flex-wrap: wrap; }
+  .badge { font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 5px; }
+  .badge.high { background: #fde8e8; color: #c06060; }
+  .badge.medium { background: #f0f0f0; color: #666; }
+  .badge.low { background: #f0f9f0; color: #5a8a5a; }
+  .badge.subject { background: #f0f0f0; color: #555; }
+  .badge.tool { background: #eef0ff; color: #4338ca; font-weight: 700; }
+  .badge.oko { background: #eef0ff; color: #4338ca; font-weight: 700; letter-spacing: 0.5px; }
+  .badge.brisk { background: #1a1a1e; color: #fff; font-weight: 700; letter-spacing: 0.3px; }
+
+  /* APPROVE / REJECT BUTTONS */
+  .card-approval {
+    display: flex; gap: 6px; align-items: center;
+  }
+  .approve-btn, .reject-btn {
+    width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid #ddd;
+    background: #fff; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; cursor: pointer; transition: all 0.2s;
+  }
+  .approve-btn:hover { border-color: #22c55e; background: #f0fdf4; }
+  .reject-btn:hover { border-color: #ef4444; background: #fef2f2; }
+  .card.approved { border-color: #bbf7d0; background: #fafffe; }
+  .card.approved .approve-btn { background: #22c55e; border-color: #22c55e; color: #fff; }
+  .card.rejected { opacity: 0.45; border-color: #fecaca; }
+  .card.rejected .reject-btn { background: #ef4444; border-color: #ef4444; color: #fff; }
+  .card.rejected .card-title { text-decoration: line-through; color: #aaa; }
+  @keyframes approve-pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+  }
+  .card.approve-anim { animation: approve-pop 0.4s ease; }
+
+  .card-bottom { display: flex; align-items: center; justify-content: space-between; }
+  .card-avatar {
+    width: 20px; height: 20px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 7px; font-weight: 700; color: #fff;
+  }
+  .card-due { font-size: 10px; color: #bbb; }
+  .card-dependency-indicator { position: absolute; right: 8px; top: 8px; font-size: 11px; color: #3b82f6; opacity: 0.5; }
+
+  /* DEPENDENCY ARROWS */
+  .arrows-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+  .dep-arrow { fill: none; stroke: #60a5fa; stroke-width: 2; stroke-dasharray: 6 4; opacity: 0.55; }
+  .dep-arrowhead { fill: #60a5fa; opacity: 0.55; }
+
+  /* SIDEBAR LEFT */
+  .sidebar {
+    width: 380px; background: #2a2a2e; color: #e0e0e0;
+    display: flex; flex-direction: column; flex-shrink: 0;
+    border-right: 1px solid #3a3a3e; order: -1;
+    transform: translateX(-100%); transition: transform 0.4s ease;
+    position: relative; z-index: 10;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 18px; border-bottom: 1px solid #3a3a3e;
+  }
+  .sidebar-title-area { display: flex; align-items: center; gap: 10px; }
+  .sidebar-logo {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, #7c5ce7, #a78bfa);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; color: #fff;
+  }
+  .sidebar-title { font-size: 15px; font-weight: 700; color: #fff; }
+  .sidebar-status { font-size: 11px; color: #888; font-weight: 500; }
+  .sidebar-close { background: none; border: none; color: #666; cursor: pointer; font-size: 18px; padding: 4px; }
+  .sidebar-close:hover { color: #ccc; }
+  .sidebar-messages {
+    flex: 1; overflow-y: auto; padding: 14px 18px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .sidebar-msg {
+    font-size: 13px; line-height: 1.5;
+    opacity: 0; transform: translateY(8px); transition: all 0.4s ease;
+  }
+  .sidebar-msg.visible { opacity: 1; transform: translateY(0); }
+  .sidebar-msg.agent {
+    color: #d4d4d4; padding: 10px 14px;
+    background: #333338; border-radius: 10px; border: 1px solid #3e3e44;
+  }
+  .sidebar-msg.agent .agent-label { font-size: 11px; font-weight: 600; color: #a78bfa; margin-bottom: 4px; }
+  .sidebar-msg.system { color: #777; font-size: 12px; text-align: center; padding: 6px 0; }
+  .sidebar-msg.action {
+    color: #4ade80; font-size: 12px; padding: 6px 12px;
+    background: rgba(74,222,128,0.06); border-radius: 8px; border-left: 3px solid #4ade80;
+  }
+  .sidebar-msg.teacher {
+    color: #fff; padding: 10px 14px;
+    background: #3d3d44; border-radius: 10px; border: 1px solid #4a4a52;
+  }
+  .sidebar-msg.teacher .teacher-label {
+    font-size: 11px; font-weight: 600; color: #60a5fa; margin-bottom: 4px;
+  }
+  .sidebar-bottom { padding: 12px 18px; border-top: 1px solid #3a3a3e; display: flex; align-items: center; gap: 8px; }
+  .sidebar-input {
+    flex: 1; background: #333338; border: 1px solid #4a4a50;
+    border-radius: 8px; padding: 8px 12px; color: #ccc; font-size: 13px; outline: none;
+  }
+  .sidebar-input::placeholder { color: #555; }
+
+  /* TIME INDICATOR */
+  .time-indicator {
+    position: fixed; top: 14px; right: 16px; z-index: 1000;
+    background: #1a1a1a; color: #fff; padding: 8px 16px; border-radius: 10px;
+    font-size: 12px; font-weight: 600;
+    display: flex; align-items: center; gap: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+  .time-dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; animation: pulse-dot 1.5s infinite; }
+  @keyframes pulse-dot { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+  .time-progress { width: 70px; height: 3px; background: rgba(255,255,255,0.15); border-radius: 2px; overflow: hidden; }
+  .time-progress-bar { height: 100%; background: #4ade80; border-radius: 2px; transition: width 0.3s linear; }
+
+  /* PLAYBACK */
+  .playback-bar {
+    position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+    z-index: 1000; display: flex; align-items: center; gap: 10px;
+    background: #1a1a1a; border-radius: 12px; padding: 6px 14px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .play-btn {
+    width: 34px; height: 34px; border-radius: 50%; background: #4ade80;
+    border: none; color: #1a1a1a; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .play-btn:hover { background: #22c55e; }
+  .play-btn.paused { background: #f97316; }
+  .speed-btn {
+    padding: 4px 9px; border-radius: 6px; border: 1px solid #444;
+    background: transparent; color: #aaa; font-size: 11px; cursor: pointer; font-weight: 600;
+  }
+  .speed-btn.active { background: #333; color: #fff; border-color: #666; }
+  .playback-label { color: #888; font-size: 11px; font-weight: 500; }
+  .restart-btn {
+    padding: 5px 10px; border-radius: 6px; border: 1px solid #444;
+    background: transparent; color: #aaa; font-size: 11px; cursor: pointer;
+  }
+  .restart-btn:hover { background: #333; color: #fff; }
+
+  .sidebar-messages::-webkit-scrollbar { width: 4px; }
+  .sidebar-messages::-webkit-scrollbar-thumb { background: #444; border-radius: 2px; }
+  .column::-webkit-scrollbar { width: 4px; }
+  .column::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title-area">
+        <div class="sidebar-logo"><svg viewBox="0 0 32 32" width="22" height="22"><path d="M16 4 L25 28 L21 28 L19 22.5 L13 22.5 L11 28 L7 28 Z M16 10 L13.5 20.5 L18.5 20.5 Z" fill="white"/></svg></div>
+        <div><div class="sidebar-title">Afterclass</div><div class="sidebar-status" id="sidebar-status">Ready</div></div>
+      </div>
+      <button class="sidebar-close" onclick="toggleSidebar()">✕</button>
+    </div>
+    <div class="sidebar-messages" id="sidebarMessages"></div>
+    <div class="sidebar-bottom"><input class="sidebar-input" placeholder="Ask Afterclass anything..." disabled></div>
+  </div>
+  <div class="main" id="mainArea">
+    <div class="header">
+      <div class="header-left"><div class="stats-bar">
+        <span class="header-tag">G8 · Unit 4 · Linear Equations</span>
+        <div class="stat">≡ <span id="stat-total">0 Tasks</span></div>
+        <div class="stat" style="color:#f97316">◇ <span id="stat-urgent">4 Urgent</span></div>
+        <div class="stat">○ <span id="stat-done">0 Done</span></div>
+      </div></div>
+      <div class="header-right"><button class="btn-afterclass" onclick="toggleSidebar()">✦ Afterclass</button></div>
+    </div>
+    <div class="columns-wrapper">
+      <svg class="arrows-svg" id="arrowsSvg"><defs><marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" class="dep-arrowhead"/></marker></defs></svg>
+      <div class="columns" id="columnsArea">
+        <div class="column" id="col-todo"><div class="column-header"><div class="column-header-left"><div class="column-dot todo"></div><span class="column-title">To Do</span><span class="column-count" id="count-todo">0</span></div><button class="column-add">+</button></div></div>
+        <div class="column" id="col-progress"><div class="column-header"><div class="column-header-left"><div class="column-dot progress"></div><span class="column-title">In Progress</span><span class="column-count" id="count-progress">0</span></div><button class="column-add">+</button></div></div>
+        <div class="column" id="col-review"><div class="column-header"><div class="column-header-left"><div class="column-dot review"></div><span class="column-title">Review</span><span class="column-count" id="count-review">0</span></div><button class="column-add">+</button></div></div>
+        <div class="column" id="col-done"><div class="column-header"><div class="column-header-left"><div class="column-dot done"></div><span class="column-title">Done</span><span class="column-count" id="count-done">0</span></div><button class="column-add">+</button></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="time-indicator" id="timeIndicator"><div class="time-dot"></div><span id="timeDisplay">Mon Nov 3 · 8:00 AM</span><div class="time-progress"><div class="time-progress-bar" id="timeProgressBar" style="width:0%"></div></div></div>
+<div class="playback-bar">
+  <button class="play-btn" id="playBtn" onclick="togglePlayback()"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></button>
+  <span class="playback-label">Speed:</span>
+  <button class="speed-btn active" onclick="setSpeed(1,this)">1×</button>
+  <button class="speed-btn" onclick="setSpeed(0.5,this)">0.5×</button>
+  <button class="speed-btn" onclick="setSpeed(2,this)">2×</button>
+  <button class="restart-btn" onclick="restartDemo()">↻ Restart</button>
+</div>
+<script>
+let CARDS={},TIMELINE=[];
+async function loadData(){const r=await fetch('data.json?t='+Date.now());const d=await r.json();CARDS=d.cards;TIMELINE=d.timeline;}
+const WEEK_DURATION=36000;
+let speedMultiplier=1,isPlaying=false,animationStart=null,animationFrame=null,currentEventIndex=0,sidebarOpen=false,pausedElapsed=0,lastPauseTime=null;
+
+function renderCard(d, col){
+  const c=document.createElement('div');c.className='card appearing';c.id='card-'+d.id;c.dataset.cardId=d.id;
+  let h='<div class="card-icon-row"><div class="card-type-icon '+d.iconClass+'">'+d.icon+'</div><div class="card-title">'+d.title+'</div></div>';
+  h+='<div class="card-desc">'+d.desc+'</div>';
+  if(d.math)h+='<div class="card-math-preview">'+d.math+'</div>';
+  if(d.students){h+='<div class="card-students">';d.students.forEach(s=>{h+='<div class="student-chip"><div class="avatar-mini">'+s.initials+'</div>'+s.name+'</div>';});h+='</div>';}
+  h+='<div class="card-badges">';d.badges.forEach(b=>{h+='<span class="badge '+b.cls+'">'+b.text+'</span>';});h+='</div>';
+  h+='<div class="card-bottom">';
+  if(col==='todo') h+='<div class="card-approval"><button class="approve-btn" title="Approve">✓</button><button class="reject-btn" title="Skip">✕</button></div>';
+  if(d.due)h+='<span class="card-due">'+d.due+'</span>';
+  h+='</div>';
+  if(d.dependency)h+='<div class="card-dependency-indicator" title="Depends on: '+(CARDS[d.dependency]?.title||d.dependency)+'">🔗</div>';
+  c.innerHTML=h;return c;
+}
+function addCardToColumn(id,col){const card=CARDS[id];if(!card)return;const el=renderCard(card,col);document.getElementById('col-'+col).appendChild(el);updateCounts();drawArrows();setTimeout(()=>el.classList.remove('appearing'),500);}
+function approveCard(id){const el=document.getElementById('card-'+id);if(!el)return;el.classList.add('approved','approve-anim');setTimeout(()=>el.classList.remove('approve-anim'),400);}
+function rejectCard(id){const el=document.getElementById('card-'+id);if(!el)return;el.classList.add('rejected');}
+function moveCard(id,col){
+  const el=document.getElementById('card-'+id);if(!el)return;el.classList.add('moving');
+  setTimeout(()=>{el.remove();document.getElementById('col-'+col).appendChild(el);updateCounts();
+  // Remove approval buttons when leaving To Do
+  const appr=el.querySelector('.card-approval');if(appr)appr.remove();
+  el.classList.remove('approved','rejected');
+  if(col==='done'){const due=el.querySelector('.card-due');if(due)due.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';}
+  drawArrows();setTimeout(()=>el.classList.remove('moving'),800);},150);
+}
+function updateCounts(){['todo','progress','review','done'].forEach(c=>{document.getElementById('count-'+c).textContent=document.getElementById('col-'+c).querySelectorAll('.card').length;});const t=document.querySelectorAll('.card').length;const d=document.getElementById('col-done').querySelectorAll('.card').length;document.getElementById('stat-total').textContent=t+' Tasks';document.getElementById('stat-done').textContent=d+' Done';}
+
+function drawArrows(){
+  const svg=document.getElementById('arrowsSvg');svg.querySelectorAll('path').forEach(p=>p.remove());
+  const wr=document.querySelector('.columns-wrapper').getBoundingClientRect();
+  Object.values(CARDS).forEach(card=>{
+    if(!card.dependency)return;
+    const fromEl=document.getElementById('card-'+card.dependency);
+    const toEl=document.getElementById('card-'+card.id);
+    if(!fromEl||!toEl)return;
+    const fr=fromEl.getBoundingClientRect(),tr=toEl.getBoundingClientRect();
+    const sameCol=Math.abs(fr.left-tr.left)<50;
+    let d;
+    if(sameCol){
+      const cx=fr.left+fr.width/2-wr.left;
+      const fy=fr.bottom-wr.top+2,ty=tr.top-wr.top-2;
+      const my=(fy+ty)/2;
+      d='M '+cx+' '+fy+' C '+(cx+35)+' '+my+', '+(cx+35)+' '+my+', '+cx+' '+ty;
+    } else {
+      const x1=fr.right-wr.left,y1=fr.top+fr.height/2-wr.top;
+      const x2=tr.left-wr.left,y2=tr.top+tr.height/2-wr.top;
+      const cp=Math.max(Math.abs(x2-x1)*0.4,40);
+      d='M '+x1+' '+y1+' C '+(x1+cp)+' '+y1+', '+(x2-cp)+' '+y2+', '+x2+' '+y2;
+    }
+    const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d',d);p.setAttribute('class','dep-arrow');p.setAttribute('marker-end','url(#arrowhead)');
+    svg.appendChild(p);
+  });
+}
+let at;document.querySelector('.columns')?.addEventListener('scroll',()=>{clearTimeout(at);at=setTimeout(drawArrows,50);});
+window.addEventListener('resize',()=>{clearTimeout(at);at=setTimeout(drawArrows,100);});
+
+function toggleSidebar(){sidebarOpen=!sidebarOpen;document.getElementById('sidebar').classList.toggle('open',sidebarOpen);setTimeout(drawArrows,450);}
+function addSidebarMessage(type,text){
+  const c=document.getElementById('sidebarMessages');const m=document.createElement('div');m.className='sidebar-msg '+type;
+  if(type==='agent')m.innerHTML='<div class="agent-label">Afterclass</div>'+text.replace(/\n/g,'<br>');
+  else if(type==='teacher')m.innerHTML='<div class="teacher-label">You</div>'+text.replace(/\n/g,'<br>');
+  else if(type==='system')m.textContent=text;else m.innerHTML=text;
+  c.appendChild(m);requestAnimationFrame(()=>{m.classList.add('visible');c.scrollTop=c.scrollHeight;});
+}
+function getTimeForProgress(t){
+  const days=['Mon','Tue','Wed','Thu','Fri'],dates=['Nov 3','Nov 4','Nov 5','Nov 6','Nov 7'];
+  const di=Math.min(Math.floor(t*5),4),dp=(t*5)-di;
+  const hr=Math.floor(8+dp*9),mn=Math.floor((dp*9*60)%60);
+  const ampm=hr>=12?'PM':'AM',dh=hr>12?hr-12:hr;
+  return days[di]+' '+dates[di]+' · '+dh+':'+(mn<10?'0'+mn:mn)+' '+ampm;
+}
+function togglePlayback(){isPlaying?pauseDemo():startDemo();}
+function startDemo(){
+  isPlaying=true;const btn=document.getElementById('playBtn');
+  btn.innerHTML='<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+  btn.classList.add('paused');document.getElementById('sidebar-status').textContent='Working...';
+  if(animationStart===null){animationStart=performance.now();pausedElapsed=0;if(!sidebarOpen)toggleSidebar();}
+  else if(lastPauseTime!==null){pausedElapsed+=performance.now()-lastPauseTime;}
+  lastPauseTime=null;if(!animationFrame)animationFrame=setInterval(tick,50);
+}
+function pauseDemo(){
+  isPlaying=false;lastPauseTime=performance.now();const btn=document.getElementById('playBtn');
+  btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>';
+  btn.classList.remove('paused');document.getElementById('sidebar-status').textContent='Paused';
+  if(animationFrame){clearInterval(animationFrame);animationFrame=null;}
+}
+function tick(){
+  if(!isPlaying)return;const now=performance.now();
+  const elapsed=(now-animationStart-pausedElapsed)*speedMultiplier;
+  const maxT=TIMELINE.length>0?TIMELINE[TIMELINE.length-1].t:1;
+  // Only advance one event per tick to pace the animation
+  if(currentEventIndex<TIMELINE.length){
+    const targetT=TIMELINE[currentEventIndex].t;
+    const targetElapsed=targetT/maxT*WEEK_DURATION;
+    if(elapsed>=targetElapsed){processEvent(TIMELINE[currentEventIndex]);currentEventIndex++;}
+  }
+  const displayProg=Math.min(elapsed/WEEK_DURATION,1);
+  document.getElementById('timeDisplay').textContent=getTimeForProgress(displayProg);
+  document.getElementById('timeProgressBar').style.width=(displayProg*100)+'%';
+  if(currentEventIndex>=TIMELINE.length&&displayProg>=1){document.getElementById('sidebar-status').textContent='Week Complete \u2713';pauseDemo();}
+}
+function processEvent(ev){
+  switch(ev.action){
+    case 'sidebar-open':if(!sidebarOpen)toggleSidebar();break;
+    case 'msg':addSidebarMessage(ev.type,ev.text);break;
+    case 'add-card':addCardToColumn(ev.card,ev.col);break;
+    case 'move-card':moveCard(ev.card,ev.col);break;
+    case 'approve-card':approveCard(ev.card);break;
+    case 'reject-card':rejectCard(ev.card);break;
+  }
+}
+function restartDemo(){
+  pauseDemo();['todo','progress','review','done'].forEach(c=>{document.getElementById('col-'+c).querySelectorAll('.card').forEach(e=>e.remove());});
+  document.getElementById('sidebarMessages').innerHTML='';document.getElementById('arrowsSvg').querySelectorAll('path').forEach(p=>p.remove());
+  animationStart=null;lastPauseTime=null;pausedElapsed=0;currentEventIndex=0;animationFrame=null;
+  updateCounts();document.getElementById('timeDisplay').textContent='Mon Nov 3 · 8:00 AM';
+  document.getElementById('timeProgressBar').style.width='0%';document.getElementById('sidebar-status').textContent='Ready';
+}
+function setSpeed(s,btn){speedMultiplier=s;document.querySelectorAll('.speed-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+loadData().then(()=>{setTimeout(()=>startDemo(),800);});
+</script>
+</body>
+</html>
