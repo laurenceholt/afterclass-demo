@@ -394,9 +394,9 @@ function addSidebarMessage(type,text){
 function getTimeForProgress(t){
   const days=['Mon','Tue','Wed','Thu','Fri'],dates=['Nov 3','Nov 4','Nov 5','Nov 6','Nov 7'];
   const di=Math.min(Math.floor(t*5),4),dp=(t*5)-di;
-  const hr=Math.floor(8+dp*9),mn=Math.floor((dp*9*60)%60);
-  const ampm=hr>=12?'PM':'AM',dh=hr>12?hr-12:hr;
-  return days[di]+' '+dates[di]+' · '+dh+':'+(mn<10?'0'+mn:mn)+' '+ampm;
+  const hr=Math.floor(8+dp*9);
+  const ampm=hr>=12?'PM':'AM',dh=hr>12?hr-12:(hr===0?12:hr);
+  return days[di]+' '+dates[di]+' · '+dh+':00 '+ampm;
 }
 function togglePlayback(){isPlaying?pauseDemo():startDemo();}
 function startDemo(){
