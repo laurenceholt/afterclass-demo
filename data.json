@@ -21,8 +21,8 @@
     },
     "revise": {
       "id": "revise",
-      "title": "Adjust Remaining Lessons (Coteach)",
-      "desc": "Use coteach.ai to adjust Unit 4 Lessons 3\u20134 based on how Lessons 1\u20132 went and what the assessment data showed. Add scaffolding where students struggled.",
+      "title": "Revise Warm-Ups to Practice Slope",
+      "desc": "Use coteach.ai to revise Unit 4 Lesson 3-4 warm-ups so students get extra practice on slope calculation \u2014 the biggest gap from Unit 3. Also integrate the hanger-to-equation game into Lesson 3.",
       "icon": "\u270f\ufe0f",
       "iconClass": "lesson",
       "badges": [
@@ -96,8 +96,8 @@
           "cls": "subject"
         },
         {
-          "text": "Brisk",
-          "cls": "brisk"
+          "text": "Podsie",
+          "cls": "podsie"
         }
       ],
       "students": [
@@ -125,8 +125,8 @@
           "cls": "subject"
         },
         {
-          "text": "Brisk",
-          "cls": "brisk"
+          "text": "Podsie",
+          "cls": "podsie"
         }
       ],
       "students": [
@@ -246,7 +246,7 @@
     "game": {
       "id": "game",
       "title": "Build Hanger Diagram Game",
-      "desc": "Create an interactive game where students balance hanger diagrams and match them to equations \u2014 supports Unit 4 Lessons 2\u20133 conceptual foundation",
+      "desc": "Build a contrasting cases game where students see a hanger diagram side-by-side with an equation and decide if they match. Uses research on transfer (Bransford & Schwartz, 1999) to make the hanger\u2192equation connection explicit. Runs in Brisk for live progress tracking.",
       "icon": "\ud83c\udfae",
       "iconClass": "game",
       "badges": [
@@ -257,10 +257,14 @@
         {
           "text": "Activity",
           "cls": "subject"
+        },
+        {
+          "text": "Brisk",
+          "cls": "brisk"
         }
       ],
-      "math": "Balance: \u25cf\u25cf\u25b3 = \u25a0\u25a0\u25a0\u25b3 \u2192 2c = 3s",
-      "due": "Thu Nov 6"
+      "math": "Match: \u25b2\u25b2\u25cf = \u25b2\u25cf\u25cf\u25cf \u2194 2x + 3 = x + 6 ?",
+      "due": "Wed Nov 5"
     },
     "assign-game": {
       "id": "assign-game",
@@ -278,7 +282,7 @@
           "cls": "subject"
         }
       ],
-      "due": "Fri Nov 7",
+      "due": "Wed Nov 5",
       "dependency": "game"
     }
   },
@@ -303,7 +307,7 @@
       "t": 0.02,
       "action": "msg",
       "type": "agent",
-      "text": "On it. I'll have the results analyzed by this afternoon. Here are the first tasks to get started \u2014 I'll add more once we see the assessment data."
+      "text": "On it. I'll have the results analyzed within the hour. Here are the first tasks to get started \u2014 I'll add more once we see the assessment data."
     },
     {
       "t": 0.03,
@@ -431,7 +435,7 @@
       "t": 0.21,
       "action": "msg",
       "type": "agent",
-      "text": "Assessment results are in:"
+      "text": "Looking at Unit 3 assessment data:"
     },
     {
       "t": 0.22,
@@ -506,7 +510,7 @@
       "t": 0.32,
       "action": "msg",
       "type": "agent",
-      "text": "Got it \u2014 OKO slope and revision approved, challenge on hold. Starting Marcus on Brisk and the slope group on OKO."
+      "text": "Got it \u2014 OKO slope and revision approved, challenge on hold. Starting Marcus on Podsie and the slope group on OKO."
     },
     {
       "t": 0.33,
@@ -530,13 +534,13 @@
       "t": 0.36,
       "action": "msg",
       "type": "teacher",
-      "text": "Just taught Lesson 2 \u2014 Keeping the Equation Balanced. The hanger diagrams were a hit! But Jayden and a few others kept wanting to 'solve' without explaining the balance. Marcus was really lost \u2014 glad he's getting Brisk time."
+      "text": "Just taught Lesson 2 \u2014 Keeping the Equation Balanced. The hanger diagrams were a hit! But Jayden and a few others kept wanting to 'solve' without explaining the balance. Marcus was really lost \u2014 glad he's getting Podsie time."
     },
     {
       "t": 0.36,
       "action": "msg",
       "type": "agent",
-      "text": "Good to hear the hangers worked. OKO is specifically working on the 'why' with Jayden. And Marcus just had a breakthrough on Brisk \u2014 he was reading the coefficient of x as the y-intercept. After working through three graphs, he got 11/12 correct."
+      "text": "Good to hear the hangers worked. OKO is specifically working on the 'why' with Jayden. And Marcus just had a breakthrough on Podsie \u2014 he was reading the coefficient of x as the y-intercept. After working through three graphs, he got 11/12 correct."
     },
     {
       "t": 0.37,
@@ -566,7 +570,7 @@
       "t": 0.41,
       "action": "msg",
       "type": "agent",
-      "text": "OKO slope group wrapped up. Aisha and Carlos can now calculate slope from two points. Jayden still reverses rise and run sometimes \u2014 flagging for follow-up."
+      "text": "OKO slope group wrapped up. Aisha and Carlos can now calculate slope from two points. During the OKO session, Carlos started participating much more \u2014 he was pushing Jayden and Aisha to prove their slope calculations were right. OKO flagged a 40% increase in his engagement. Jayden still reverses rise and run sometimes \u2014 flagging for follow-up."
     },
     {
       "t": 0.42,
@@ -575,66 +579,106 @@
       "col": "done"
     },
     {
-      "t": 0.44,
+      "t": 0.43,
       "action": "msg",
       "type": "action",
       "text": "\u2713 OKO Slope group \u2192 Done"
     },
     {
-      "t": 0.45,
+      "t": 0.44,
       "action": "move-card",
       "card": "aaliyah",
       "col": "progress"
     },
     {
-      "t": 0.46,
+      "t": 0.45,
       "action": "msg",
       "type": "agent",
-      "text": "Starting Aaliyah's Brisk practice. Also \u2014 assessment analysis approved, unlocking the lesson revision with coteach.ai."
+      "text": "Starting Aaliyah's Podsie practice. Also \u2014 assessment analysis approved, unlocking the lesson revision with coteach.ai."
     },
     {
-      "t": 0.47,
+      "t": 0.46,
       "action": "move-card",
       "card": "assess",
       "col": "done"
     },
     {
-      "t": 0.48,
+      "t": 0.47,
       "action": "move-card",
       "card": "revise",
       "col": "progress"
     },
     {
-      "t": 0.49,
+      "t": 0.48,
       "action": "msg",
       "type": "action",
       "text": "\ud83d\udd17 Dependency resolved: Assessment \u2192 Lesson Revision"
     },
     {
+      "t": 0.49,
+      "action": "msg",
+      "type": "teacher",
+      "text": "Just finished Lesson 3 \u2014 Balanced Moves. TOUGH. When we moved from hanger diagrams to actual equations, about half the class couldn't connect the moves. The hanger-to-equation transition is the real sticking point."
+    },
+    {
+      "t": 0.50,
+      "action": "msg",
+      "type": "agent",
+      "text": "The research on transfer says you need to make that connection really explicit \u2014 for instance with contrasting cases (Bransford & Schwartz, 1999). I could build a game where students see a hanger side-by-side with an equation and decide if they match. We can run it in Brisk so you can see progress live."
+    },
+    {
       "t": 0.51,
       "action": "msg",
       "type": "teacher",
-      "text": "Just finished Lesson 3 \u2014 Balanced Moves. TOUGH. When we moved from hanger diagrams to actual equations, about half the class couldn't connect the moves. Can coteach.ai add bridge problems for Lesson 4?"
+      "text": "Love it \u2014 build it. And have coteach.ai fit it into the Lesson 3 warm-up for next time."
     },
     {
       "t": 0.52,
-      "action": "msg",
-      "type": "agent",
-      "text": "Absolutely. I'll have coteach.ai add transition problems showing the hanger diagram side-by-side with the equation. Also \u2014 Darius and Zara are clearly ahead. Want to approve that challenge card now?"
+      "action": "add-card",
+      "card": "game",
+      "col": "todo"
+    },
+    {
+      "t": 0.52,
+      "action": "add-card",
+      "card": "assign-game",
+      "col": "todo"
     },
     {
       "t": 0.53,
+      "action": "msg",
+      "type": "action",
+      "text": "\u2713 2 new tasks added: Build game & Assign to class"
+    },
+    {
+      "t": 0.53,
+      "action": "approve-card",
+      "card": "game"
+    },
+    {
+      "t": 0.54,
+      "action": "approve-card",
+      "card": "assign-game"
+    },
+    {
+      "t": 0.54,
+      "action": "msg",
+      "type": "agent",
+      "text": "Also \u2014 Darius and Zara are clearly ahead. Want to approve that challenge card now?"
+    },
+    {
+      "t": 0.55,
       "action": "msg",
       "type": "teacher",
       "text": "Yes, they're ready. Approve it."
     },
     {
-      "t": 0.54,
+      "t": 0.55,
       "action": "approve-card",
       "card": "challenge"
     },
     {
-      "t": 0.55,
+      "t": 0.56,
       "action": "move-card",
       "card": "aaliyah",
       "col": "done"
@@ -643,7 +687,7 @@
       "t": 0.57,
       "action": "msg",
       "type": "agent",
-      "text": "Aaliyah completed Brisk practice \u2014 she can now distinguish y = kx from y = mx + b. That Grade 7 gap is closed. Starting the challenge for Darius and Zara."
+      "text": "Aaliyah completed Podsie practice \u2014 she can now distinguish y = kx from y = mx + b. That Grade 7 gap is closed. Starting the challenge for Darius and Zara, and building the contrasting cases game."
     },
     {
       "t": 0.58,
@@ -652,10 +696,16 @@
       "col": "progress"
     },
     {
+      "t": 0.58,
+      "action": "move-card",
+      "card": "game",
+      "col": "progress"
+    },
+    {
       "t": 0.59,
       "action": "msg",
       "type": "action",
-      "text": "\u2713 Aaliyah \u2192 Done \u00b7 Challenge group started"
+      "text": "\u2713 Aaliyah \u2192 Done \u00b7 Challenge & Game started"
     },
     {
       "t": 0.6,
@@ -667,129 +717,113 @@
       "t": 0.61,
       "action": "msg",
       "type": "agent",
-      "text": "coteach.ai finished revising Lesson 4 with bridge problems. I also want to suggest a few more tasks for the end of the week \u2014 a practice bug analysis, a video, and a hanger diagram game."
+      "text": "coteach.ai finished revising the warm-ups with extra slope practice and the game integration. Hanger game is built and ready. I also want to suggest a practice bug analysis and a slope video for the end of the week."
     },
     {
       "t": 0.62,
-      "action": "add-card",
-      "card": "analyze",
-      "col": "todo"
-    },
-    {
-      "t": 0.63,
-      "action": "add-card",
-      "card": "video",
-      "col": "todo"
-    },
-    {
-      "t": 0.63,
-      "action": "add-card",
-      "card": "game",
-      "col": "todo"
-    },
-    {
-      "t": 0.64,
-      "action": "add-card",
-      "card": "assign-game",
-      "col": "todo"
-    },
-    {
-      "t": 0.65,
-      "action": "msg",
-      "type": "action",
-      "text": "\u2713 4 new tasks added"
-    },
-    {
-      "t": 0.66,
-      "action": "msg",
-      "type": "teacher",
-      "text": "Yes to all of those. Approve them."
-    },
-    {
-      "t": 0.67,
-      "action": "approve-card",
-      "card": "analyze"
-    },
-    {
-      "t": 0.68,
-      "action": "approve-card",
-      "card": "video"
-    },
-    {
-      "t": 0.69,
-      "action": "approve-card",
-      "card": "game"
-    },
-    {
-      "t": 0.7,
-      "action": "approve-card",
-      "card": "assign-game"
-    },
-    {
-      "t": 0.7,
       "action": "move-card",
       "card": "revise",
       "col": "review"
     },
     {
-      "t": 0.71,
+      "t": 0.63,
+      "action": "move-card",
+      "card": "game",
+      "col": "review"
+    },
+    {
+      "t": 0.64,
+      "action": "add-card",
+      "card": "analyze",
+      "col": "todo"
+    },
+    {
+      "t": 0.65,
+      "action": "add-card",
+      "card": "video",
+      "col": "todo"
+    },
+    {
+      "t": 0.66,
+      "action": "msg",
+      "type": "action",
+      "text": "\u2713 2 new tasks added: Bug analysis & Slope video"
+    },
+    {
+      "t": 0.67,
+      "action": "msg",
+      "type": "teacher",
+      "text": "Yes to all of those. Approve them."
+    },
+    {
+      "t": 0.68,
+      "action": "approve-card",
+      "card": "analyze"
+    },
+    {
+      "t": 0.69,
+      "action": "approve-card",
+      "card": "video"
+    },
+    {
+      "t": 0.70,
       "action": "move-card",
       "card": "analyze",
       "col": "progress"
     },
     {
+      "t": 0.71,
+      "action": "msg",
+      "type": "action",
+      "text": "\u2192 Bug analysis \u2192 In Progress"
+    },
+    {
       "t": 0.72,
-      "action": "move-card",
-      "card": "game",
-      "col": "progress"
+      "action": "msg",
+      "type": "teacher",
+      "text": "Lesson 4 went WAY better! Both the coteach changes to the warm-up AND the contrasting cases game were a hit. DeShawn was explaining to his table partner why a hanger didn't match the equation. Those were game changers."
     },
     {
       "t": 0.73,
       "action": "msg",
-      "type": "action",
-      "text": "\u2192 Lesson revision \u2192 Review \u00b7 Analysis & Game \u2192 In Progress"
+      "type": "agent",
+      "text": "That's great to hear! The contrasting cases approach really works for making the hanger\u2192equation connection explicit. Practice analysis found the top 3 bugs:"
     },
     {
       "t": 0.74,
-      "action": "msg",
-      "type": "teacher",
-      "text": "Lesson 4 went WAY better than yesterday! The side-by-side hanger/equation problems from coteach.ai made a huge difference. Even DeShawn was explaining the balanced moves to his partner. \ud83d\ude4c"
-    },
-    {
-      "t": 0.75,
-      "action": "msg",
-      "type": "agent",
-      "text": "That's great! The side-by-side scaffold worked \u2014 I'll note it for next time. Practice analysis found the top 3 bugs:"
-    },
-    {
-      "t": 0.76,
       "action": "msg",
       "type": "agent",
       "text": "1. Confusing slope and y-intercept when equation is y = b + mx (41%)\n2. Calculating slope as run/rise instead of rise/run (28%)\n3. Not recognizing that a negative slope means the line goes down (19%)\n\nCreating a video on slope from two points."
     },
     {
-      "t": 0.76,
+      "t": 0.75,
       "action": "move-card",
       "card": "analyze",
       "col": "done"
     },
     {
-      "t": 0.77,
+      "t": 0.76,
       "action": "move-card",
       "card": "video",
       "col": "progress"
     },
     {
-      "t": 0.78,
+      "t": 0.77,
       "action": "msg",
       "type": "teacher",
       "text": "That y = b + mx confusion is real \u2014 I see it every year. Make sure the video shows both forms side by side."
     },
     {
+      "t": 0.78,
+      "action": "move-card",
+      "card": "game",
+      "col": "done"
+    },
+    {
       "t": 0.79,
       "action": "msg",
       "type": "action",
-      "text": "\ud83d\udd17 Dependency resolved: Analysis \u2192 Video creation"
+      "text": "\ud83d\udd17 Dependency resolved: Analysis \u2192 Video creation \u00b7 Game \u2192 Done"
     },
     {
       "t": 0.8,
@@ -801,7 +835,7 @@
       "t": 0.81,
       "action": "msg",
       "type": "agent",
-      "text": "Last day! Video is rendered with both equation forms side by side. Hanger game is ready. Darius and Zara crushed the error analysis \u2014 they found all 4 errors in Lin's solution path."
+      "text": "Last day! Video is rendered with both equation forms side by side. Darius and Zara crushed the error analysis \u2014 they found all 4 errors in Lin's solution path."
     },
     {
       "t": 0.82,
@@ -810,76 +844,64 @@
       "col": "review"
     },
     {
-      "t": 0.83,
-      "action": "move-card",
-      "card": "game",
-      "col": "review"
-    },
-    {
-      "t": 0.85,
+      "t": 0.84,
       "action": "move-card",
       "card": "challenge",
       "col": "done"
     },
     {
-      "t": 0.86,
+      "t": 0.85,
       "action": "msg",
       "type": "action",
-      "text": "\u2192 Video & Game \u2192 Review \u00b7 Challenge \u2192 Done"
+      "text": "\u2192 Video \u2192 Review \u00b7 Challenge \u2192 Done"
+    },
+    {
+      "t": 0.86,
+      "action": "msg",
+      "type": "teacher",
+      "text": "The revised warm-ups and game look great \u2014 approve them. Push the slope video for weekend homework and assign the hanger game as extra practice."
     },
     {
       "t": 0.87,
-      "action": "msg",
-      "type": "teacher",
-      "text": "The revised Lesson 4 materials look great \u2014 approve them. Push the slope video for weekend homework and assign the hanger game as extra practice."
-    },
-    {
-      "t": 0.88,
       "action": "move-card",
       "card": "revise",
       "col": "done"
     },
     {
-      "t": 0.89,
+      "t": 0.88,
       "action": "move-card",
       "card": "video",
       "col": "done"
     },
     {
-      "t": 0.9,
-      "action": "move-card",
-      "card": "game",
-      "col": "done"
-    },
-    {
-      "t": 0.91,
+      "t": 0.89,
       "action": "move-card",
       "card": "assign-game",
       "col": "progress"
     },
     {
-      "t": 0.92,
+      "t": 0.90,
       "action": "msg",
       "type": "action",
       "text": "\ud83d\udd17 Dependency resolved: Game \u2192 Assign to class"
     },
     {
-      "t": 0.94,
+      "t": 0.92,
       "action": "move-card",
       "card": "assign-game",
       "col": "done"
     },
     {
-      "t": 0.95,
+      "t": 0.93,
       "action": "msg",
       "type": "agent",
-      "text": "Week complete! \ud83c\udf89\n\n\ud83d\udcda Lessons 1\u20134 taught \u2014 hanger diagrams clicked after coteach.ai added bridge problems\n\ud83d\udcca Unit 3 gaps identified \u2014 slope from two points was the biggest\n\ud83d\udc65 Both OKO groups closed key gaps\n\ud83d\udc64 Marcus and Aaliyah caught up via Brisk\n\ud83c\udf1f Darius & Zara completed error analysis extension\n\ud83c\udfac Slope video assigned for weekend\n\ud83c\udfae Hanger diagram game assigned for extra practice"
+      "text": "Week complete! \ud83c\udf89\n\n\ud83d\udcda Lessons 1\u20134 taught \u2014 the contrasting cases game and the coteach warm-up revisions were game changers\n\ud83d\udcca Unit 3 gaps identified \u2014 slope from two points was the biggest\n\ud83d\udc65 Both OKO groups closed key gaps (Carlos had a 40% engagement jump!)\n\ud83d\udc64 Marcus and Aaliyah caught up via Podsie\n\ud83c\udf1f Darius & Zara completed error analysis extension\n\ud83c\udfac Slope video assigned for weekend\n\ud83c\udfae Contrasting cases game assigned for extra practice"
     },
     {
-      "t": 0.96,
+      "t": 0.95,
       "action": "msg",
       "type": "teacher",
-      "text": "Great week. Lessons 1\u20134 are done and I feel way better about where the kids are. The coteach.ai adjustment for Lesson 4 was a game-changer. See you Monday for Lesson 5! \ud83d\ude4f"
+      "text": "Great week. Lessons 1\u20134 are done and I feel way better about where the kids are. The contrasting cases game and the coteach revisions were game changers \u2014 DeShawn explaining why a hanger didn't match the equation was the highlight. See you Monday for Lesson 5! \ud83d\ude4f"
     },
     {
       "t": 0.97,
