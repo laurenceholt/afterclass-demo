@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" font-family="Inter, system-ui, sans-serif">
+  <!-- App window background -->
+  <rect width="320" height="180" rx="8" fill="#f8f9fa" stroke="#e0e0e0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <rect width="320" height="28" rx="8" fill="#2a2a2e"/>
+  <rect y="8" width="320" height="20" fill="#2a2a2e"/>
+  <circle cx="12" cy="14" r="4" fill="#ff5f57"/>
+  <circle cx="24" cy="14" r="4" fill="#febc2e"/>
+  <circle cx="36" cy="14" r="4" fill="#28c840"/>
+  <text x="160" y="18" text-anchor="middle" fill="#ccc" font-size="9" font-weight="600">Hanger Match — Contrasting Cases</text>
+
+  <!-- Left side: Hanger diagram -->
+  <text x="80" y="48" text-anchor="middle" fill="#666" font-size="8" font-weight="600">HANGER DIAGRAM</text>
+
+  <!-- Hanger bar -->
+  <line x1="30" y1="62" x2="130" y2="62" stroke="#333" stroke-width="2.5"/>
+  <!-- Support triangle -->
+  <polygon points="80,52 74,62 86,62" fill="#333"/>
+  <line x1="80" y1="42" x2="80" y2="52" stroke="#333" stroke-width="2"/>
+
+  <!-- Left side of hanger -->
+  <line x1="50" y1="62" x2="50" y2="78" stroke="#555" stroke-width="1.5"/>
+  <line x1="70" y1="62" x2="70" y2="78" stroke="#555" stroke-width="1.5"/>
+  <!-- Two triangles (x) and a circle (3) -->
+  <polygon points="50,78 44,92 56,92" fill="#6366f1" stroke="#4f46e5" stroke-width="1"/>
+  <text x="50" y="88" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">x</text>
+  <polygon points="70,78 64,92 76,92" fill="#6366f1" stroke="#4f46e5" stroke-width="1"/>
+  <text x="70" y="88" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">x</text>
+  <line x1="60" y1="92" x2="60" y2="102" stroke="#555" stroke-width="1"/>
+  <circle cx="60" cy="108" r="8" fill="#f97316" stroke="#ea580c" stroke-width="1"/>
+  <text x="60" y="111" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">3</text>
+
+  <!-- Right side of hanger -->
+  <line x1="110" y1="62" x2="110" y2="78" stroke="#555" stroke-width="1.5"/>
+  <!-- One triangle (x) and three circles -->
+  <polygon points="100,78 94,92 106,92" fill="#6366f1" stroke="#4f46e5" stroke-width="1"/>
+  <text x="100" y="88" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">x</text>
+  <line x1="116" y1="78" x2="116" y2="88" stroke="#555" stroke-width="1"/>
+  <circle cx="108" cy="96" r="7" fill="#f97316" stroke="#ea580c" stroke-width="1"/>
+  <text x="108" y="99" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">1</text>
+  <circle cx="124" cy="96" r="7" fill="#f97316" stroke="#ea580c" stroke-width="1"/>
+  <text x="124" y="99" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">1</text>
+  <circle cx="116" cy="110" r="7" fill="#f97316" stroke="#ea580c" stroke-width="1"/>
+  <text x="116" y="113" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">1</text>
+
+  <!-- VS divider -->
+  <line x1="160" y1="38" x2="160" y2="130" stroke="#ddd" stroke-width="1" stroke-dasharray="4 3"/>
+  <rect x="148" y="78" width="24" height="16" rx="8" fill="#e5e5e5"/>
+  <text x="160" y="89" text-anchor="middle" fill="#888" font-size="8" font-weight="600">VS</text>
+
+  <!-- Right side: Equation -->
+  <text x="240" y="48" text-anchor="middle" fill="#666" font-size="8" font-weight="600">EQUATION</text>
+
+  <!-- Equation card -->
+  <rect x="190" y="60" width="100" height="40" rx="6" fill="#fff" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="240" y="84" text-anchor="middle" fill="#1a1a1a" font-size="14" font-weight="700">2x + 3 = x + 6</text>
+
+  <!-- Question -->
+  <text x="240" y="118" text-anchor="middle" fill="#555" font-size="9" font-weight="600">Do these match?</text>
+
+  <!-- Match / No Match buttons -->
+  <rect x="193" y="126" width="42" height="22" rx="6" fill="#22c55e"/>
+  <text x="214" y="140" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">✓ Match</text>
+  <rect x="243" y="126" width="50" height="22" rx="6" fill="#fff" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="268" y="140" text-anchor="middle" fill="#888" font-size="9" font-weight="600">✗ No Match</text>
+
+  <!-- Progress bar -->
+  <rect x="16" y="158" width="288" height="6" rx="3" fill="#e5e5e5"/>
+  <rect x="16" y="158" width="173" height="6" rx="3" fill="#6366f1"/>
+  <text x="16" y="173" fill="#888" font-size="7">Question 3 of 5</text>
+  <text x="304" y="173" text-anchor="end" fill="#888" font-size="7">⏱ 2:14</text>
+</svg>

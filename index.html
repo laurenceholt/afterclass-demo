@@ -91,6 +91,13 @@
     font-family: 'Courier New', monospace; font-size: 10px;
     color: #666; border: 1px solid #eee;
   }
+  .card-image-preview {
+    border-radius: 6px; overflow: hidden; border: 1px solid #e5e5e5;
+    max-height: 120px;
+  }
+  .card-image-preview img {
+    width: 100%; height: auto; display: block;
+  }
   .card-students { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
   .student-chip {
     display: flex; align-items: center; gap: 3px;
@@ -233,6 +240,10 @@
     z-index: 1000; display: flex; align-items: center; gap: 10px;
     background: #1a1a1a; border-radius: 12px; padding: 6px 14px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .playback-bar.hidden {
+    opacity: 0; transform: translateX(-50%) translateY(60px); pointer-events: none;
   }
   .play-btn {
     width: 34px; height: 34px; border-radius: 50%; background: #4ade80;
@@ -297,8 +308,9 @@
 <div class="playback-bar">
   <button class="play-btn" id="playBtn" onclick="togglePlayback()"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></button>
   <span class="playback-label">Speed:</span>
-  <button class="speed-btn active" onclick="setSpeed(1,this)">1×</button>
+  <button class="speed-btn" onclick="setSpeed(0.25,this)">0.25×</button>
   <button class="speed-btn" onclick="setSpeed(0.5,this)">0.5×</button>
+  <button class="speed-btn active" onclick="setSpeed(1,this)">1×</button>
   <button class="speed-btn" onclick="setSpeed(2,this)">2×</button>
   <button class="restart-btn" onclick="restartDemo()">↻ Restart</button>
 </div>
@@ -324,7 +336,8 @@ function renderCard(d, col){
   const iconSvg=ICON_SVG[d.iconClass]||d.icon;
   let h='<div class="card-icon-row"><div class="card-type-icon '+d.iconClass+'">'+iconSvg+'</div><div class="card-title">'+d.title+'</div></div>';
   h+='<div class="card-desc">'+d.desc+'</div>';
-  if(d.math)h+='<div class="card-math-preview">'+d.math+'</div>';
+  if(d.image)h+='<div class="card-image-preview"><img src="'+d.image+'" alt="Preview"></div>';
+  else if(d.math)h+='<div class="card-math-preview">'+d.math+'</div>';
   if(d.students){h+='<div class="card-students">';d.students.forEach(s=>{h+='<div class="student-chip"><div class="avatar-mini">'+s.initials+'</div>'+s.name+'</div>';});h+='</div>';}
   h+='<div class="card-badges">';d.badges.forEach(b=>{h+='<span class="badge '+b.cls+'">'+b.text+'</span>';});h+='</div>';
   h+='<div class="card-bottom">';
@@ -450,6 +463,10 @@ function restartDemo(){
   document.getElementById('timeProgressBar').style.width='0%';document.getElementById('sidebar-status').textContent='Ready';
 }
 function setSpeed(s,btn){speedMultiplier=s;document.querySelectorAll('.speed-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+document.addEventListener('keydown',function(e){
+  if(e.key==='h'||e.key==='H'){document.querySelector('.playback-bar').classList.toggle('hidden');}
+  if(e.key===' '){e.preventDefault();togglePlayback();}
+});
 loadData().then(()=>{setTimeout(()=>startDemo(),800);});
 </script>
 </body>

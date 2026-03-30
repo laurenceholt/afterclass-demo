@@ -241,7 +241,8 @@
       ],
       "math": "(y\u2082\u2212y\u2081)/(x\u2082\u2212x\u2081) = (1\u2212(\u22122))/(6\u22122) = 3/4",
       "due": "Fri Nov 7",
-      "dependency": "analyze"
+      "dependency": "analyze",
+      "image": "images/video-preview.svg"
     },
     "game": {
       "id": "game",
@@ -264,7 +265,8 @@
         }
       ],
       "math": "Match: \u25b2\u25b2\u25cf = \u25b2\u25cf\u25cf\u25cf \u2194 2x + 3 = x + 6 ?",
-      "due": "Wed Nov 5"
+      "due": "Wed Nov 5",
+      "image": "images/game-preview.svg"
     },
     "assign-game": {
       "id": "assign-game",
@@ -343,7 +345,7 @@
       "t": 0.07,
       "action": "msg",
       "type": "teacher",
-      "text": "Looks good. Let me approve these."
+      "text": "Looks good. Those are approved."
     },
     {
       "t": 0.08,
@@ -489,7 +491,7 @@
       "t": 0.29,
       "action": "msg",
       "type": "teacher",
-      "text": "Good call on the slope group. Approve OKO and the lesson revision. But hold off on the challenge for Darius and Zara \u2014 let me see how they do in class first."
+      "text": "Good call on the slope group. OKO and the lesson revision are approved. But hold off on the challenge for Darius and Zara \u2014 let me see how they do in class first."
     },
     {
       "t": 0.29,
@@ -621,7 +623,7 @@
       "text": "Just finished Lesson 3 \u2014 Balanced Moves. TOUGH. When we moved from hanger diagrams to actual equations, about half the class couldn't connect the moves. The hanger-to-equation transition is the real sticking point."
     },
     {
-      "t": 0.50,
+      "t": 0.5,
       "action": "msg",
       "type": "agent",
       "text": "The research on transfer says you need to make that connection really explicit \u2014 for instance with contrasting cases (Bransford & Schwartz, 1999). I could build a game where students see a hanger side-by-side with an equation and decide if they match. We can run it in Brisk so you can see progress live."
@@ -670,7 +672,7 @@
       "t": 0.55,
       "action": "msg",
       "type": "teacher",
-      "text": "Yes, they're ready. Approve it."
+      "text": "Yes, they're ready. Approved."
     },
     {
       "t": 0.55,
@@ -753,7 +755,7 @@
       "t": 0.67,
       "action": "msg",
       "type": "teacher",
-      "text": "Yes to all of those. Approve them."
+      "text": "Yes to all of those. All approved \u2014 let's go."
     },
     {
       "t": 0.68,
@@ -766,7 +768,7 @@
       "card": "video"
     },
     {
-      "t": 0.70,
+      "t": 0.7,
       "action": "move-card",
       "card": "analyze",
       "col": "progress"
@@ -859,7 +861,7 @@
       "t": 0.86,
       "action": "msg",
       "type": "teacher",
-      "text": "The revised warm-ups and game look great \u2014 approve them. Push the slope video for weekend homework and assign the hanger game as extra practice."
+      "text": "The revised warm-ups and game look great \u2014 approved. Push the slope video for weekend homework and assign the hanger game as extra practice."
     },
     {
       "t": 0.87,
@@ -880,7 +882,7 @@
       "col": "progress"
     },
     {
-      "t": 0.90,
+      "t": 0.9,
       "action": "msg",
       "type": "action",
       "text": "\ud83d\udd17 Dependency resolved: Game \u2192 Assign to class"
