@@ -161,6 +161,12 @@
 let data = { cards: {}, timeline: [] };
 
 async function loadData() {
+  // Check localStorage first (works on Netlify and any static host)
+  const saved = localStorage.getItem('afterclass-data');
+  if (saved) {
+    try { data = JSON.parse(saved); renderCards(); renderChat(); return; } catch(e) {}
+  }
+  // Fall back to data.json file
   const r = await fetch('data.json?t=' + Date.now());
   data = await r.json();
   renderCards();
@@ -296,31 +302,18 @@ function addTimelineEvent() {
 // SAVE
 // ═══════════════════════════════════════
 async function saveData() {
+  // Always save to localStorage (works on any host including Netlify)
+  localStorage.setItem('afterclass-data', JSON.stringify(data));
+  showToast('Saved! Reload the demo to see changes.');
+
+  // Also try server save for local dev (writes data.json on disk)
   try {
-    const resp = await fetch('/save', {
+    await fetch('/save', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data, null, 2)
     });
-    if (resp.ok) {
-      showToast('Saved! Reload the demo to see changes.');
-    } else {
-      // Fallback to download (e.g. on Netlify)
-      fallbackDownload();
-    }
-  } catch (e) {
-    // No server endpoint (static hosting) — download instead
-    fallbackDownload();
-  }
-}
-
-function fallbackDownload() {
-  const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'data.json';
-  a.click();
-  showToast('Downloaded data.json (static hosting — replace file manually)');
+  } catch (e) { /* no server, that's fine — localStorage save is enough */ }
 }
 
 function showToast(msg) {

@@ -303,7 +303,7 @@
 </div>
 <script>
 let CARDS={},TIMELINE=[];
-async function loadData(){const r=await fetch('data.json?t='+Date.now());const d=await r.json();CARDS=d.cards;TIMELINE=d.timeline;}
+async function loadData(){var saved=localStorage.getItem('afterclass-data');if(saved){try{var d=JSON.parse(saved);CARDS=d.cards;TIMELINE=d.timeline;return;}catch(e){}}var r=await fetch('data.json?t='+Date.now());var d=await r.json();CARDS=d.cards;TIMELINE=d.timeline;}
 const WEEK_DURATION=36000;
 let speedMultiplier=1,isPlaying=false,animationStart=null,animationFrame=null,currentEventIndex=0,sidebarOpen=false,pausedElapsed=0,lastPauseTime=null;
 
