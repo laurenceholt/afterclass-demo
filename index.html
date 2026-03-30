@@ -408,9 +408,8 @@ function startDemo(){
   lastPauseTime=null;if(!animationFrame)animationFrame=setInterval(function(){
     if(!isPlaying)return;
     var _n=performance.now(),_e=(_n-animationStart-pausedElapsed)*speedMultiplier;
-    var _m=TIMELINE.length>0?TIMELINE[TIMELINE.length-1].t:1;
-    while(currentEventIndex<TIMELINE.length){var _t=TIMELINE[currentEventIndex].t/_m*WEEK_DURATION;if(_e<_t)break;processEvent(TIMELINE[currentEventIndex]);currentEventIndex++;}
     var _d=Math.min(_e/WEEK_DURATION,1);
+    while(currentEventIndex<TIMELINE.length&&TIMELINE[currentEventIndex].t<=_d){processEvent(TIMELINE[currentEventIndex]);currentEventIndex++;}
     document.getElementById('timeDisplay').textContent=getTimeForProgress(_d);
     document.getElementById('timeProgressBar').style.width=(_d*100)+'%';
     if(currentEventIndex>=TIMELINE.length&&_d>=1){document.getElementById('sidebar-status').textContent='Week Complete \u2713';pauseDemo();}
@@ -426,16 +425,11 @@ function tick(){
   if(!isPlaying)return;
   var _n=performance.now();
   var _e=(_n-animationStart-pausedElapsed)*speedMultiplier;
-  var _m=TIMELINE.length>0?TIMELINE[TIMELINE.length-1].t:1;
-  while(currentEventIndex<TIMELINE.length){
-    var _te=TIMELINE[currentEventIndex].t/_m*WEEK_DURATION;
-    if(_e<_te)break;
-    processEvent(TIMELINE[currentEventIndex]);currentEventIndex++;
-  }
-  var _dp=Math.min(_e/WEEK_DURATION,1);
-  document.getElementById('timeDisplay').textContent=getTimeForProgress(_dp);
-  document.getElementById('timeProgressBar').style.width=(_dp*100)+'%';
-  if(currentEventIndex>=TIMELINE.length&&_dp>=1){document.getElementById('sidebar-status').textContent='Week Complete \u2713';pauseDemo();}
+  var _d=Math.min(_e/WEEK_DURATION,1);
+  while(currentEventIndex<TIMELINE.length&&TIMELINE[currentEventIndex].t<=_d){processEvent(TIMELINE[currentEventIndex]);currentEventIndex++;}
+  document.getElementById('timeDisplay').textContent=getTimeForProgress(_d);
+  document.getElementById('timeProgressBar').style.width=(_d*100)+'%';
+  if(currentEventIndex>=TIMELINE.length&&_d>=1){document.getElementById('sidebar-status').textContent='Week Complete \u2713';pauseDemo();}
 }
 function processEvent(ev){
   switch(ev.action){
